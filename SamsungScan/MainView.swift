@@ -33,6 +33,9 @@ struct MainView: View {
         .sheet(isPresented: $model.showSetup) {
             SetupSheet(model: model)
         }
+        .sheet(isPresented: $model.showWizard) {
+            SetupWizard(model: model)
+        }
         .sheet(isPresented: $model.showPreviewArea) {
             PreviewAreaSheet(model: model)
         }

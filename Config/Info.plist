@@ -37,6 +37,7 @@
 	<array>
 		<string>_scanner._tcp</string>
 		<string>_uscan._tcp</string>
+		<string>_uscans._tcp</string>
 		<string>_ipp._tcp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>

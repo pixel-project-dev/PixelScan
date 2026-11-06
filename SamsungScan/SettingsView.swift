@@ -56,6 +56,19 @@ struct SettingsView: View {
                     Text(version)
                         .font(.caption)
                 }
+                if !model.sane.executableArchitectures.isEmpty {
+                    LabeledContent("Processor") {
+                        Text(model.sane.executableArchitectures.joined(separator: ", "))
+                    }
+                }
+                if let warning = model.sane.architectureWarning {
+                    Text(warning)
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                }
+                Text(L10n.format("This app is running as %@.", MachOArchitecture.process))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 Button("Choose scanimage…") { model.chooseScanimage() }
                 Button("Open Setup") { model.showSetup = true }
                 Text("SANE is installed separately and is started as its own program.")

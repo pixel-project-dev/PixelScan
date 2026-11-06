@@ -45,6 +45,19 @@ struct ScannerSidebar: View {
                         .font(.callout)
                         .lineLimit(2)
                 }
+                if let scanner = model.library.selectedScanner {
+                    DisclosureGroup("Advanced") {
+                        Picker("Connection", selection: Binding(
+                            get: { scanner.backendID },
+                            set: { model.setConnectionMethod($0) }
+                        )) {
+                            ForEach(DeviceAddress.selectableIDs(installedLibraries: model.sane.installedLibraries), id: \.self) { id in
+                                Text(DeviceAddress.plainTitle(for: id)).tag(id)
+                            }
+                        }
+                        .disabled(model.isScanning)
+                    }
+                }
                 HStack {
                     Button("Add Scanner") { model.showAddScanner = true }
                     Button("Refresh") { Task { await model.refreshConnection() } }

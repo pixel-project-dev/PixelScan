@@ -25,10 +25,10 @@ final class ScanimageDriver: @unchecked Sendable {
         let runner = ProcessRunner()
         store(runner)
         defer { clear(runner) }
-        let result = await runner.run(
-            executable: executable,
-            arguments: ScanCommandBuilder.probeArguments(deviceName: deviceName)
-        )
+        let result = await Self.runProbe(runner: runner, executable: executable, deviceName: deviceName)
+        if result.cancelled {
+            return .failure(.unreachable)
+        }
         if result.failedToLaunch {
             return .failure(.backendMissing)
         }
@@ -96,6 +96,31 @@ final class ScanimageDriver: @unchecked Sendable {
             failedToLaunch: result.failedToLaunch
         )
         return ScanOutcome(files: files, warning: warning)
+    }
+
+    private static func runProbe(runner: ProcessRunner, executable: URL, deviceName: String) async -> ProcessResult {
+        await withTaskGroup(of: ProcessResult?.self) { group in
+            group.addTask {
+                await runner.run(
+                    executable: executable,
+                    arguments: ScanCommandBuilder.probeArguments(deviceName: deviceName)
+                )
+            }
+            group.addTask {
+                try? await Task.sleep(nanoseconds: 20_000_000_000)
+                runner.cancel()
+                return nil
+            }
+            var finished: ProcessResult?
+            for await value in group {
+                if let value {
+                    finished = value
+                    break
+                }
+            }
+            group.cancelAll()
+            return finished ?? ProcessResult(exitCode: -1, stdout: "", stderr: "", cancelled: true)
+        }
     }
 
     static func validImages(in directory: URL) -> [URL] {

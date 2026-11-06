@@ -27,4 +27,4 @@ else
 fi
 
 bash Scripts/make-dmg.sh
-echo "Fertig: dist/Samsung Scan.app und dist/SamsungScan-1.0.0.dmg"
+echo "Fertig: dist/Samsung Scan.app und dist/SamsungScan-1.1.0-unnotarized.dmg"

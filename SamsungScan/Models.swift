@@ -170,6 +170,8 @@ struct ScannerConfiguration: Codable, Equatable, Identifiable, Sendable {
     var port: Int
     var createdAt: Date
     var lastUsedAt: Date?
+    var backendID: String
+    var secureConnection: Bool
 
     init(
         id: UUID = UUID(),
@@ -177,7 +179,9 @@ struct ScannerConfiguration: Codable, Equatable, Identifiable, Sendable {
         host: String,
         port: Int = 9400,
         createdAt: Date = Date(),
-        lastUsedAt: Date? = nil
+        lastUsedAt: Date? = nil,
+        backendID: String = DeviceAddress.samsungNetwork,
+        secureConnection: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -185,6 +189,36 @@ struct ScannerConfiguration: Codable, Equatable, Identifiable, Sendable {
         self.port = port
         self.createdAt = createdAt
         self.lastUsedAt = lastUsedAt
+        self.backendID = backendID
+        self.secureConnection = secureConnection
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(host, forKey: .host)
+        try container.encode(port, forKey: .port)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(lastUsedAt, forKey: .lastUsedAt)
+        try container.encode(backendID, forKey: .backendID)
+        try container.encode(secureConnection, forKey: .secureConnection)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, host, port, createdAt, lastUsedAt, backendID, secureConnection
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        host = try container.decode(String.self, forKey: .host)
+        port = try container.decode(Int.self, forKey: .port)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        lastUsedAt = try container.decodeIfPresent(Date.self, forKey: .lastUsedAt)
+        backendID = try container.decodeIfPresent(String.self, forKey: .backendID) ?? DeviceAddress.samsungNetwork
+        secureConnection = try container.decodeIfPresent(Bool.self, forKey: .secureConnection) ?? false
     }
 }
 
@@ -315,11 +349,14 @@ struct EditablePage: Codable, Equatable, Identifiable, Sendable {
 }
 
 struct DiscoveredScanner: Identifiable, Equatable, Sendable {
-    var id: String { "\(host):\(port)" }
+    var id: String { "\(host):\(port):\(backendHint)" }
     var name: String
     var host: String
     var port: Int
     var serviceType: String
+    var backendHint: String
+    var secureConnection: Bool
+    var detail: String
 }
 
 enum ConnectionState: Equatable {
@@ -336,7 +373,7 @@ enum ConnectionState: Equatable {
         case .checking: L10n.text("Checking…")
         case .ready: L10n.text("Ready")
         case .missingBackend: L10n.text("SANE is missing")
-        case .backendDisabled: L10n.text("The xerox_mfp backend is not enabled.")
+        case .backendDisabled: L10n.text("The selected scanner support is turned off.")
         case .failed(let message): message
         }
     }
@@ -360,6 +397,9 @@ enum ScanFailure: Error, Equatable, LocalizedError {
     case incomplete
     case backendMissing
     case backendDisabled
+    case backendNotInstalled
+    case unsupportedBackend
+    case localNetwork
     case badImage
     case exportFailed(String)
     case couldNotReadOptions
@@ -392,7 +432,13 @@ enum ScanFailure: Error, Equatable, LocalizedError {
         case .backendMissing:
             L10n.text("SANE components are missing.")
         case .backendDisabled:
-            L10n.text("The xerox_mfp backend is not enabled.")
+            L10n.text("The selected scanner support is turned off.")
+        case .backendNotInstalled:
+            L10n.text("This connection method is not installed with the scanner software.")
+        case .unsupportedBackend:
+            L10n.text("This connection method is not available.")
+        case .localNetwork:
+            L10n.text("The scanner was found, but it could not be opened. Check that it is turned on and on the same network. If macOS asked for local network access, allow Samsung Scan.")
         case .badImage:
             L10n.text("The image data is invalid.")
         case .exportFailed(let detail):

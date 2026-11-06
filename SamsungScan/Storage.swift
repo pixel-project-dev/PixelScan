@@ -30,6 +30,7 @@ struct ScannerLibrary: Codable, Equatable {
     var selectedProfileID: UUID?
     var settings: ScanSettings
     var scanimageOverridePath: String?
+    var setupCompleted: Bool
 
     static func makeDefault() -> ScannerLibrary {
         ScannerLibrary(
@@ -38,8 +39,53 @@ struct ScannerLibrary: Codable, Equatable {
             selectedScannerID: nil,
             selectedProfileID: BuiltInProfile.document,
             settings: .document,
-            scanimageOverridePath: nil
+            scanimageOverridePath: nil,
+            setupCompleted: false
         )
+    }
+
+    init(
+        scanners: [ScannerConfiguration],
+        profiles: [ScanProfile],
+        selectedScannerID: UUID?,
+        selectedProfileID: UUID?,
+        settings: ScanSettings,
+        scanimageOverridePath: String?,
+        setupCompleted: Bool
+    ) {
+        self.scanners = scanners
+        self.profiles = profiles
+        self.selectedScannerID = selectedScannerID
+        self.selectedProfileID = selectedProfileID
+        self.settings = settings
+        self.scanimageOverridePath = scanimageOverridePath
+        self.setupCompleted = setupCompleted
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(scanners, forKey: .scanners)
+        try container.encode(profiles, forKey: .profiles)
+        try container.encodeIfPresent(selectedScannerID, forKey: .selectedScannerID)
+        try container.encodeIfPresent(selectedProfileID, forKey: .selectedProfileID)
+        try container.encode(settings, forKey: .settings)
+        try container.encodeIfPresent(scanimageOverridePath, forKey: .scanimageOverridePath)
+        try container.encode(setupCompleted, forKey: .setupCompleted)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case scanners, profiles, selectedScannerID, selectedProfileID, settings, scanimageOverridePath, setupCompleted
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        scanners = try container.decodeIfPresent([ScannerConfiguration].self, forKey: .scanners) ?? []
+        profiles = try container.decodeIfPresent([ScanProfile].self, forKey: .profiles) ?? []
+        selectedScannerID = try container.decodeIfPresent(UUID.self, forKey: .selectedScannerID)
+        selectedProfileID = try container.decodeIfPresent(UUID.self, forKey: .selectedProfileID)
+        settings = try container.decodeIfPresent(ScanSettings.self, forKey: .settings) ?? .document
+        scanimageOverridePath = try container.decodeIfPresent(String.self, forKey: .scanimageOverridePath)
+        setupCompleted = try container.decodeIfPresent(Bool.self, forKey: .setupCompleted) ?? !scanners.isEmpty
     }
 
     var selectedScanner: ScannerConfiguration? {

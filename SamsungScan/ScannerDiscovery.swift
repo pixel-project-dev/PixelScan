@@ -16,7 +16,7 @@ final class ScannerDiscovery {
         isRunning = true
         suggestions = []
         seenHosts = []
-        let types = ["_scanner._tcp", "_uscan._tcp", "_ipp._tcp"]
+        let types = ["_scanner._tcp", "_uscan._tcp", "_uscans._tcp", "_ipp._tcp"]
         for type in types {
             let parameters = NWParameters.tcp
             parameters.includePeerToPeer = false
@@ -70,42 +70,73 @@ final class ScannerDiscovery {
                 }
                 return
             }
-            let host = Self.hostString(from: connection.currentPath?.remoteEndpoint)
+            let endpoint = Self.hostAndPort(from: connection.currentPath?.remoteEndpoint)
             connection.cancel()
-            guard let host else { return }
+            guard let endpoint else { return }
             Task { @MainActor in
-                await self?.consider(host: host, name: name, serviceType: serviceType)
+                await self?.consider(host: endpoint.host, servicePort: endpoint.port, name: name, serviceType: serviceType)
             }
         }
         connection.start(queue: .global(qos: .utility))
     }
 
-    private func consider(host: String, name: String, serviceType: String) async {
+    private func consider(host: String, servicePort: Int, name: String, serviceType: String) async {
         let cleaned = host.trimmingCharacters(in: CharacterSet(charactersIn: "[]%"))
-        guard DeviceName.isValidHost(cleaned), !seenHosts.contains(cleaned), suggestions.count < 15 else { return }
-        seenHosts.insert(cleaned)
-        let probe = await TCPProbe.check(host: cleaned, port: DeviceName.defaultPort, timeout: 1.2)
-        guard case .success = probe else { return }
-        guard !suggestions.contains(where: { $0.host == cleaned }) else { return }
+        guard DeviceName.isValidHost(cleaned), suggestions.count < 15 else { return }
+        let role = DiscoveryPolicy.role(for: serviceType)
+        let scanPortOpen: Bool
+        if role == .printer || serviceType.lowercased().contains("_scanner._tcp") {
+            let probe = await TCPProbe.check(host: cleaned, port: DeviceName.defaultPort, timeout: 1.2)
+            scanPortOpen = probe.isSuccess
+        } else {
+            scanPortOpen = false
+        }
+        guard DiscoveryPolicy.shouldSuggest(serviceType: serviceType, scanPortOpen: scanPortOpen) else { return }
+        let port = DiscoveryPolicy.suggestedPort(serviceType: serviceType, servicePort: servicePort, scanPortOpen: scanPortOpen)
+        let hint = DiscoveryPolicy.backendHint(serviceType: serviceType, scanPortOpen: scanPortOpen)
+        let key = "\(cleaned):\(port):\(hint)"
+        guard !seenHosts.contains(key) else { return }
+        seenHosts.insert(key)
+        let detail: String
+        if role == .printer {
+            detail = L10n.text("This printer answers the scan port. A print service alone is not treated as a scanner.")
+        } else if hint == DeviceAddress.webScan {
+            detail = L10n.text("This device announces a scan service.")
+        } else {
+            detail = L10n.text("This device announces itself as a scanner.")
+        }
         suggestions.append(DiscoveredScanner(
             name: name.isEmpty ? cleaned : name,
             host: cleaned,
-            port: DeviceName.defaultPort,
-            serviceType: serviceType
+            port: port,
+            serviceType: serviceType,
+            backendHint: hint,
+            secureConnection: DiscoveryPolicy.usesSecureWeb(serviceType: serviceType),
+            detail: detail
         ))
     }
 
-    nonisolated private static func hostString(from endpoint: NWEndpoint?) -> String? {
-        guard case let .hostPort(host, _) = endpoint else { return nil }
+    nonisolated private static func hostAndPort(from endpoint: NWEndpoint?) -> (host: String, port: Int)? {
+        guard case let .hostPort(host, port) = endpoint else { return nil }
+        let value: String?
         switch host {
         case let .ipv4(address):
-            return "\(address)"
+            value = "\(address)"
         case let .ipv6(address):
-            return "\(address)"
+            value = "\(address)"
         case let .name(name, _):
-            return name
+            value = name
         @unknown default:
-            return nil
+            value = nil
         }
+        guard let value else { return nil }
+        return (value, Int(port.rawValue))
+    }
+}
+
+private extension Result where Failure == ScanFailure {
+    var isSuccess: Bool {
+        if case .success = self { return true }
+        return false
     }
 }

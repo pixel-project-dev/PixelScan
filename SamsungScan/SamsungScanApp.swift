@@ -27,6 +27,8 @@ struct SamsungScanApp: App {
                     .disabled(model.document.pages.isEmpty || model.isScanning)
                 Button("Open in Preview") { model.openInPreview() }
                     .disabled(model.document.pages.isEmpty)
+                Divider()
+                Button("Setup Assistant") { model.showWizard = true }
             }
         }
         Settings {

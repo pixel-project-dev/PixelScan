@@ -6,8 +6,19 @@ struct SANEInstallation: Equatable, Sendable {
     var dllConfigURL: URL?
     var xeroxBackendEnabled: Bool?
     var homebrewURL: URL?
+    var executableArchitectures: [String] = []
+    var enabledBackends: [String] = []
+    var installedLibraries: [String] = []
+    var prefixPath: String?
 
     var isUsable: Bool { scanimageURL != nil }
+
+    var architectureWarning: String? {
+        MachOArchitecture.warning(
+            executableArchitectures: executableArchitectures,
+            processArchitecture: MachOArchitecture.process
+        )
+    }
 
     static func locate(overridePath: String?) -> SANEInstallation {
         let override = overridePath.flatMap { path -> URL? in
@@ -21,7 +32,11 @@ struct SANEInstallation: Equatable, Sendable {
         ] + pathCandidates()
         let scanimage = candidates.compactMap { $0 }.first { FileManager.default.isExecutableFile(atPath: $0.path) }
         let dll = scanimage.flatMap(dllConfig(nextTo:))
-        let enabled = dll.flatMap(xeroxEnabled(in:))
+        let dllText = dll.flatMap { try? String(contentsOf: $0, encoding: .utf8) }
+        let enabledNames = dllText.map(SANEConfigText.enabledBackends(in:)) ?? []
+        let enabled = dllText.map { SANEConfigText.enabledBackends(in: $0).contains("xerox_mfp") }
+        let prefix = scanimage?.deletingLastPathComponent().deletingLastPathComponent()
+        let libraries = prefix.map { libraryNames(in: $0.appendingPathComponent("lib/sane")) } ?? []
         let brew = [
             URL(fileURLWithPath: "/opt/homebrew/bin/brew"),
             URL(fileURLWithPath: "/usr/local/bin/brew")
@@ -31,7 +46,11 @@ struct SANEInstallation: Equatable, Sendable {
             version: nil,
             dllConfigURL: dll,
             xeroxBackendEnabled: enabled,
-            homebrewURL: brew
+            homebrewURL: brew,
+            executableArchitectures: scanimage.map(MachOArchitecture.names(at:)) ?? [],
+            enabledBackends: enabledNames,
+            installedLibraries: libraries,
+            prefixPath: prefix?.path
         )
     }
 
@@ -46,21 +65,26 @@ struct SANEInstallation: Equatable, Sendable {
     }
 
     static func enableXeroxBackend(at url: URL) throws {
+        try enableBackend("xerox_mfp", at: url)
+    }
+
+    static func enableBackend(_ backend: String, at url: URL) throws {
+        guard SANEConfigText.writableBackends.contains(backend) else { return }
         var text = try String(contentsOf: url, encoding: .utf8)
         let lines = text.components(separatedBy: .newlines)
         var changed = false
         let rewritten = lines.map { line -> String in
             let trimmed = line.trimmingCharacters(in: .whitespaces)
-            if trimmed == "#xerox_mfp" || trimmed == "# xerox_mfp" {
+            if trimmed == "#\(backend)" || trimmed == "# \(backend)" {
                 changed = true
-                return "xerox_mfp"
+                return backend
             }
             return line
         }
         text = rewritten.joined(separator: "\n")
-        if !rewritten.contains(where: { $0.trimmingCharacters(in: .whitespaces) == "xerox_mfp" }) {
+        if !SANEConfigText.enabledBackends(in: text).contains(backend) {
             if !text.hasSuffix("\n") { text += "\n" }
-            text += "xerox_mfp\n"
+            text += backend + "\n"
             changed = true
         }
         guard changed else { return }
@@ -87,11 +111,8 @@ struct SANEInstallation: Equatable, Sendable {
         return fallbacks.first { FileManager.default.fileExists(atPath: $0.path) }
     }
 
-    private static func xeroxEnabled(in url: URL) -> Bool {
-        guard let text = try? String(contentsOf: url, encoding: .utf8) else { return false }
-        return text.components(separatedBy: .newlines).contains { line in
-            let trimmed = line.trimmingCharacters(in: .whitespaces)
-            return trimmed == "xerox_mfp" && !trimmed.hasPrefix("#")
-        }
+    private static func libraryNames(in directory: URL) -> [String] {
+        let names = (try? FileManager.default.contentsOfDirectory(atPath: directory.path)) ?? []
+        return SANEConfigText.libraryNames(in: names).sorted()
     }
 }

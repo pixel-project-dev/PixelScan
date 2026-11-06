@@ -6,6 +6,8 @@ struct AddScannerSheet: View {
     @State private var name = ""
     @State private var host = ""
     @State private var port = "9400"
+    @State private var backendID = DeviceAddress.samsungNetwork
+    @State private var showAdvanced = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -16,7 +18,14 @@ struct AddScannerSheet: View {
                 .foregroundStyle(.secondary)
             TextField("Name", text: $name)
             TextField("IP Address", text: $host, prompt: Text("for example 192.168.1.20"))
-            TextField("Port", text: $port)
+            DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
+                TextField("Port", text: $port)
+                Picker("Connection", selection: $backendID) {
+                    ForEach(DeviceAddress.selectableIDs(installedLibraries: model.sane.installedLibraries), id: \.self) { id in
+                        Text(DeviceAddress.plainTitle(for: id)).tag(id)
+                    }
+                }
+            }
             HStack {
                 Button("Discover") {
                     if model.discovery.isRunning {
@@ -49,7 +58,13 @@ struct AddScannerSheet: View {
                         }
                         Spacer()
                         Button("Add") {
-                            model.addScanner(name: suggestion.name, host: suggestion.host, port: suggestion.port)
+                            model.addScanner(
+                                name: suggestion.name,
+                                host: suggestion.host,
+                                port: suggestion.port,
+                                backendID: suggestion.backendHint,
+                                secure: suggestion.secureConnection
+                            )
                             dismiss()
                         }
                     }
@@ -66,7 +81,7 @@ struct AddScannerSheet: View {
                 Button("Save") {
                     let trimmedHost = host.trimmingCharacters(in: .whitespacesAndNewlines)
                     let parsedPort = Int(port) ?? 0
-                    model.addScanner(name: name, host: trimmedHost, port: parsedPort)
+                    model.addScanner(name: name, host: trimmedHost, port: parsedPort, backendID: backendID)
                     if DeviceName.isValidHost(trimmedHost), (1...65535).contains(parsedPort) {
                         model.discovery.stop()
                         dismiss()

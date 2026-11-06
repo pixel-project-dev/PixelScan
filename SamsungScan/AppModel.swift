@@ -19,6 +19,7 @@ final class AppModel {
     var showAddScanner = false
     var showExport = false
     var showSetup = false
+    var showWizard = false
     var showPreviewArea = false
     var showNewProfile = false
     var showRenameScanner = false
@@ -76,6 +77,9 @@ final class AppModel {
             }?.id
         }
         await refreshConnection()
+        if library.scanners.isEmpty && !library.setupCompleted {
+            showWizard = true
+        }
     }
 
     func shutdown() {
@@ -107,17 +111,23 @@ final class AppModel {
         persist()
     }
 
-    func addScanner(name: String, host: String, port: Int) {
+    func addScanner(name: String, host: String, port: Int, backendID: String = DeviceAddress.samsungNetwork, secure: Bool = false) {
         let trimmedHost = host.trimmingCharacters(in: .whitespacesAndNewlines)
         guard DeviceName.isValidHost(trimmedHost), (1...65535).contains(port) else {
             present(ScanFailure.invalidAddress)
+            return
+        }
+        guard (try? DeviceAddress.make(backendID: backendID, host: trimmedHost, port: port, secure: secure)) != nil else {
+            present(ScanFailure.unsupportedBackend)
             return
         }
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let scanner = ScannerConfiguration(
             name: trimmedName.isEmpty ? trimmedHost : trimmedName,
             host: trimmedHost,
-            port: port
+            port: port,
+            backendID: backendID,
+            secureConnection: secure
         )
         library.scanners.append(scanner)
         library.selectedScannerID = scanner.id
@@ -132,6 +142,34 @@ final class AppModel {
         guard !trimmed.isEmpty else { return }
         library.scanners[index].name = trimmed
         persist()
+    }
+
+    func setConnectionMethod(_ backendID: String) {
+        guard let id = library.selectedScannerID, let index = library.scanners.firstIndex(where: { $0.id == id }) else { return }
+        let current = library.scanners[index]
+        var updated = current
+        let previousDefault = DeviceAddress.defaultPort(for: current.backendID, secure: current.secureConnection)
+        updated.backendID = backendID
+        if backendID == DeviceAddress.webScan {
+            updated.secureConnection = current.secureConnection
+        }
+        if current.port == previousDefault {
+            updated.port = DeviceAddress.defaultPort(for: backendID, secure: updated.secureConnection)
+        }
+        library.scanners[index] = updated
+        capabilities = nil
+        persist()
+        store.appendLog("connection method \(backendID) \(updated.host):\(updated.port)")
+        Task { await refreshConnection() }
+    }
+
+    func finishSetup(startPreview: Bool) {
+        library.setupCompleted = true
+        showWizard = false
+        persist()
+        if startPreview {
+            preview()
+        }
     }
 
     func removeSelectedScanner() {
@@ -214,12 +252,23 @@ final class AppModel {
             capabilities = nil
             return
         }
-        if sane.xeroxBackendEnabled == false {
+        if scanner.backendID == DeviceAddress.samsungNetwork, sane.xeroxBackendEnabled == false {
             connection = .backendDisabled
+        }
+        guard BackendAvailability.libraryIsPresent(scanner.backendID, installedLibraries: sane.installedLibraries) else {
+            capabilities = nil
+            connection = .failed(ScanFailure.backendNotInstalled.message)
+            statusText = ScanFailure.backendNotInstalled.message
+            return
         }
         connection = .checking
         statusText = L10n.text("Checking the connection…")
-        guard let deviceName = try? DeviceName.make(host: scanner.host, port: scanner.port) else {
+        guard let deviceName = try? DeviceAddress.make(
+            backendID: scanner.backendID,
+            host: scanner.host,
+            port: scanner.port,
+            secure: scanner.secureConnection
+        ) else {
             present(ScanFailure.invalidAddress)
             return
         }
@@ -506,7 +555,12 @@ final class AppModel {
             present(ScanFailure.backendMissing)
             return
         }
-        guard let deviceName = try? DeviceName.make(host: scanner.host, port: scanner.port) else {
+        guard let deviceName = try? DeviceAddress.make(
+            backendID: scanner.backendID,
+            host: scanner.host,
+            port: scanner.port,
+            secure: scanner.secureConnection
+        ) else {
             present(ScanFailure.invalidAddress)
             return
         }

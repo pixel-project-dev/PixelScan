@@ -30,7 +30,10 @@ enum ScanErrorMapper {
         if contains(text, ["timed out", "timeout", "connection reset", "broken pipe", "host is down", "no route", "network is unreachable"]) {
             return .networkInterrupted
         }
-        if contains(text, ["unknown backend", "backend `xerox_mfp' is not", "dll"]) && contains(text, ["xerox_mfp"]) {
+        if contains(text, ["open of device"]) && contains(text, ["invalid argument"]) {
+            return .localNetwork
+        }
+        if contains(text, ["unknown backend"]) || text.range(of: #"backend `[^']+' is not"#, options: [.regularExpression, .caseInsensitive]) != nil {
             return .backendDisabled
         }
         if contains(text, ["failed to open", "no such device", "name or service not known", "nodename nor servname", "could not resolve"]) {
