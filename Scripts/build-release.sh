@@ -19,6 +19,7 @@ cp -R "$APP" "dist/Samsung Scan.app"
 IDENTITY="Developer ID Application: Norman Hennige (Z9U2P89679)"
 if security find-identity -v -p codesigning | grep -q "$IDENTITY"; then
   codesign --force --deep --options runtime --timestamp \
+    --entitlements Config/SamsungScan.entitlements \
     --sign "$IDENTITY" \
     "dist/Samsung Scan.app"
   codesign --verify --verbose=2 "dist/Samsung Scan.app"
@@ -27,4 +28,5 @@ else
 fi
 
 bash Scripts/make-dmg.sh
-echo "Fertig: dist/Samsung Scan.app und dist/SamsungScan-1.1.0-unnotarized.dmg"
+echo "Fertig: dist/Samsung Scan.app und dist/SamsungScan-1.2.0-rc1-unnotarized.dmg"
+echo "Notarisierung ist nicht enthalten. Ein notarytool-Profil ist auf diesem Mac nicht eingerichtet."

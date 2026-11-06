@@ -6,6 +6,7 @@ final class ScanimageDriver: @unchecked Sendable {
     private let installation: SANEInstallation
     private let stateLock = NSLock()
     private var runner: ProcessRunner?
+    var configDirectory: URL?
 
     init(installation: SANEInstallation) {
         self.installation = installation
@@ -25,7 +26,12 @@ final class ScanimageDriver: @unchecked Sendable {
         let runner = ProcessRunner()
         store(runner)
         defer { clear(runner) }
-        let result = await Self.runProbe(runner: runner, executable: executable, deviceName: deviceName)
+        let result = await Self.runProbe(
+            runner: runner,
+            executable: executable,
+            deviceName: deviceName,
+            configDirectory: configDirectory
+        )
         if result.cancelled {
             return .failure(.unreachable)
         }
@@ -81,7 +87,7 @@ final class ScanimageDriver: @unchecked Sendable {
         let runner = ProcessRunner()
         store(runner)
         defer { clear(runner) }
-        let result = await runner.run(executable: executable, arguments: arguments) { chunk in
+        let result = await runner.run(executable: executable, arguments: arguments, configDirectory: configDirectory) { chunk in
             if let fraction = ProgressParser.fraction(in: chunk) {
                 onProgress(fraction)
             }
@@ -98,12 +104,18 @@ final class ScanimageDriver: @unchecked Sendable {
         return ScanOutcome(files: files, warning: warning)
     }
 
-    private static func runProbe(runner: ProcessRunner, executable: URL, deviceName: String) async -> ProcessResult {
+    private static func runProbe(
+        runner: ProcessRunner,
+        executable: URL,
+        deviceName: String,
+        configDirectory: URL?
+    ) async -> ProcessResult {
         await withTaskGroup(of: ProcessResult?.self) { group in
             group.addTask {
                 await runner.run(
                     executable: executable,
-                    arguments: ScanCommandBuilder.probeArguments(deviceName: deviceName)
+                    arguments: ScanCommandBuilder.probeArguments(deviceName: deviceName),
+                    configDirectory: configDirectory
                 )
             }
             group.addTask {

@@ -143,42 +143,13 @@ struct SetupSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Installation")
+            Text("Scanner software")
                 .font(.title2)
-            Text("SANE is installed separately and is started as its own program.")
-            Text("Samsung Scan never changes printer drivers.")
+            Text("Samsung Scan uses a scanner program that is installed separately. Printer setup is not changed.")
                 .foregroundStyle(.secondary)
-            LabeledContent("Executable") {
-                Text(model.sane.scanimageURL?.path ?? L10n.text("scanimage was not found"))
-                    .font(.caption)
-                    .textSelection(.enabled)
-            }
-            LabeledContent("Backend") {
-                Text(backendStatus)
-            }
-            if let version = model.sane.version {
-                Text(version)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            HStack {
-                Button("Choose scanimage…") { model.chooseScanimage() }
-                Button("Refresh") { Task { await model.refreshConnection() } }
-            }
-            if model.sane.xeroxBackendEnabled == false {
-                Text("This writes xerox_mfp into the SANE configuration on this Mac. Printer drivers are not changed.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Button("Enable xerox_mfp") { model.enableXeroxBackend() }
-            }
+            checklist
             if model.sane.scanimageURL == nil {
-                if model.sane.homebrewURL != nil {
-                    Button("Install with Homebrew") { model.installWithHomebrew() }
-                        .disabled(model.isInstalling)
-                } else {
-                    Text("Homebrew was not found. Install Homebrew first, then return here.")
-                    Button("Open Homebrew Website") { model.openHomebrewWebsite() }
-                }
+                missingSteps
             }
             if model.isInstalling || !model.installLog.isEmpty {
                 ScrollView {
@@ -187,8 +158,49 @@ struct SetupSheet: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .textSelection(.enabled)
                 }
-                .frame(height: 140)
-                .background(Color(nsColor: .textBackgroundColor))
+                .frame(height: 120)
+            }
+            DisclosureGroup("Advanced") {
+                if let path = model.sane.scanimageURL?.path {
+                    Text(path).font(.caption).textSelection(.enabled)
+                }
+                if let version = model.sane.version {
+                    Text(version).font(.caption).foregroundStyle(.secondary)
+                }
+                if !model.sane.executableArchitectures.isEmpty {
+                    Text(L10n.format("Processor: %@", model.sane.executableArchitectures.joined(separator: ", ")))
+                        .font(.caption)
+                }
+                if let warning = model.sane.architectureWarning {
+                    Text(warning).font(.caption)
+                }
+                Text(backendStatus).font(.caption)
+                if let directory = model.userConfigDirectory {
+                    Text(directory.path).font(.caption).textSelection(.enabled)
+                }
+                Text("Saved scanners are written only into Samsung Scan's own folder.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                if model.systemScannerEntryPresent == true {
+                    Text("A matching line also exists in the system scanner file. Samsung Scan does not change that file.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                HStack {
+                    Button("Choose scanimage…") { model.chooseScanimage() }
+                    Button("Refresh") {
+                        Task {
+                            await model.reloadBackendForDisplay()
+                            await model.refreshConnection()
+                        }
+                    }
+                }
+                if model.sane.xeroxBackendEnabled == false {
+                    Text("This writes one line into the shared scanner configuration. Printer drivers are not changed.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Button("Enable samsung support in the shared configuration") { model.enableXeroxBackend() }
+                }
             }
             HStack {
                 Spacer()
@@ -197,7 +209,40 @@ struct SetupSheet: View {
             }
         }
         .padding(20)
-        .frame(width: 560)
+        .frame(width: 580)
+    }
+
+    private var checklist: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            row(model.sane.isUsable, "Scanner program found")
+            row(model.sane.architectureWarning == nil && model.sane.isUsable, "Processor matches this Mac")
+            row(model.sane.installedLibraries.isEmpty || model.sane.installedLibraries.contains("xerox_mfp"), "Samsung support is installed")
+            row(model.userConfigDirectory != nil, "Scanner list is stored for this user")
+        }
+    }
+
+    private var missingSteps: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("The scanner program is not installed yet.")
+            Text("1. Install Homebrew, if it is not already on this Mac.")
+            Text("2. Return here and install the scanner software. macOS will ask for permission.")
+            Text("3. Add the scanner by its address. The usual port is 9400.")
+                .foregroundStyle(.secondary)
+            if model.sane.homebrewURL != nil {
+                Button("Install scanner software") { model.installWithHomebrew() }
+                    .disabled(model.isInstalling)
+            } else {
+                Button("Open Homebrew Website") { model.openHomebrewWebsite() }
+            }
+        }
+    }
+
+    private func row(_ ok: Bool, _ title: LocalizedStringKey) -> some View {
+        HStack {
+            Image(systemName: ok ? "checkmark.circle.fill" : "exclamationmark.circle")
+                .foregroundStyle(ok ? .green : .orange)
+            Text(title)
+        }
     }
 
     private var backendStatus: String {

@@ -20,7 +20,7 @@ Samsung ProXpress SL-C2670FW, Familie C2670 Series.
 - Backend `xerox_mfp`, TCP, Port 9400
 - Flachbett und ADF ja, Duplex wurde vom Gerät nicht gemeldet
 - macOS 27.2, arm64
-- Nachweis: `scanimage` 1.4.0 und die Samsung-Scan-Engine, zuletzt am 6. November 2026 mit einem Flachbettausschnitt von 40 mm × 40 mm. Der Einzug wurde in diesem Lauf nicht gestartet.
+- Nachweis: `scanimage` 1.4.0 und die Samsung-Scan-Engine, am 6. November 2026 mit einem Flachbettausschnitt von 40 mm × 40 mm. Am selben Tag hat `scanimage` mit der benutzereigenen Konfiguration von Version 1.2 die Optionen erneut gelesen. Der Einzug wurde dabei nicht gestartet.
 - Die eSCL-Abfrage des eingebauten Webservers dieses Geräts lieferte früher HTTP 404. Das gilt nur für dieses Gerät.
 
 ## Vom Backend genannt, nicht mit Samsung Scan geprüft

@@ -6,7 +6,7 @@ Samsung Scan ist eine unabhängige Anwendung. Samsung ist eine Marke des jeweili
 
 ## Installation
 
-1. Die DMG `dist/SamsungScan-1.1.0-unnotarized.dmg` öffnen. Sie ist nicht notarisiert. macOS kann den ersten Start blockieren, bis das Abbild notarisiert und geklammert wurde.
+1. Die DMG `dist/SamsungScan-1.2.0-rc1-unnotarized.dmg` öffnen. Das ist ein Release Candidate und nicht notarisiert. macOS kann den ersten Start blockieren.
 2. `Samsung Scan` in den Ordner Programme ziehen.
 3. Die App starten.
 4. Beim ersten Start fehlt in der Regel SANE. In der Einrichtung entweder den vorhandenen `scanimage`-Pfad wählen oder, wenn Homebrew schon installiert ist, **Mit Homebrew installieren** wählen.

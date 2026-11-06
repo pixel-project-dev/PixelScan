@@ -31,6 +31,8 @@ final class AppModel {
     var blankIDs: [UUID] = []
     var installLog = ""
     var isInstalling = false
+    var userConfigDirectory: URL?
+    var systemScannerEntryPresent: Bool?
     var exportSkipBlanks = false
     let discovery = ScannerDiscovery()
 
@@ -47,6 +49,14 @@ final class AppModel {
         let installation = SANEInstallation.locate(overridePath: loaded.scanimageOverridePath)
         sane = installation
         driver = ScanimageDriver(installation: installation)
+        if CommandLine.arguments.contains("--sandbox-probe") {
+            Task {
+                let report = await SandboxProbe.perform(installation: installation)
+                fputs(report.text + "\n", stdout)
+                fflush(stdout)
+                NSApplication.shared.terminate(nil)
+            }
+        }
     }
 
     var selectedPage: EditablePage? {
@@ -133,6 +143,7 @@ final class AppModel {
         library.selectedScannerID = scanner.id
         persist()
         store.appendLog("added scanner \(scanner.name) \(scanner.host):\(scanner.port)")
+        prepareUserConfig()
         Task { await refreshConnection() }
     }
 
@@ -159,6 +170,7 @@ final class AppModel {
         library.scanners[index] = updated
         capabilities = nil
         persist()
+        prepareUserConfig()
         store.appendLog("connection method \(backendID) \(updated.host):\(updated.port)")
         Task { await refreshConnection() }
     }
@@ -179,7 +191,36 @@ final class AppModel {
         capabilities = nil
         connection = .unknown
         persist()
+        prepareUserConfig()
         Task { await refreshConnection() }
+    }
+
+    func prepareUserConfig() {
+        let system = sane.prefixPath.map { URL(fileURLWithPath: $0).appendingPathComponent("etc/sane.d") }
+        do {
+            let directory = try SANEUserConfig.prepare(
+                directory: store.layout.saneDirectory,
+                systemDirectory: system,
+                scanners: library.scanners
+            )
+            userConfigDirectory = directory
+            driver.configDirectory = directory
+            store.appendLog("user scanner configuration ready")
+        } catch {
+            userConfigDirectory = nil
+            driver.configDirectory = nil
+            store.appendLog("user scanner configuration failed")
+        }
+        guard let scanner = library.selectedScanner, let system else {
+            systemScannerEntryPresent = nil
+            return
+        }
+        let file = system.appendingPathComponent("xerox_mfp.conf")
+        guard let text = try? String(contentsOf: file, encoding: .utf8) else {
+            systemScannerEntryPresent = nil
+            return
+        }
+        systemScannerEntryPresent = SANEUserConfig.mentions(host: scanner.host, port: scanner.port, in: text)
     }
 
     func saveSettingsToSelectedProfile() {
@@ -810,6 +851,10 @@ final class AppModel {
         persist()
     }
 
+    func reloadBackendForDisplay() async {
+        await reloadBackend()
+    }
+
     private func reloadBackend() async {
         sane = SANEInstallation.locate(overridePath: library.scanimageOverridePath)
         if let url = sane.scanimageURL {
@@ -817,6 +862,7 @@ final class AppModel {
         }
         driver.cancel()
         driver = ScanimageDriver(installation: sane)
+        prepareUserConfig()
     }
 
     private func adoptScanimage(_ url: URL) async {

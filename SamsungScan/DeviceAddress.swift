@@ -67,6 +67,24 @@ enum BackendAvailability {
 enum SANEConfigText {
     static let writableBackends: Set<String> = ["xerox_mfp", "escl", "pixma", "net"]
 
+    static func enabling(_ backend: String, in text: String) -> String {
+        guard writableBackends.contains(backend) else { return text }
+        let lines = text.components(separatedBy: .newlines)
+        let rewritten = lines.map { line -> String in
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed == "#\(backend)" || trimmed == "# \(backend)" {
+                return backend
+            }
+            return line
+        }
+        var result = rewritten.joined(separator: "\n")
+        if !enabledBackends(in: result).contains(backend) {
+            if !result.hasSuffix("\n") { result += "\n" }
+            result += backend + "\n"
+        }
+        return result
+    }
+
     static func enabledBackends(in text: String) -> [String] {
         text.components(separatedBy: .newlines).compactMap { line in
             let trimmed = line.trimmingCharacters(in: .whitespaces)

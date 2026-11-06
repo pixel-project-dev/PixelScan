@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 Release Candidate 1
+
+Build 3. Nicht notarisiert und deshalb kein fertiges Website-Release.
+
+- Diagnose der Scannerinstallation: Programm, Prozessor, Samsung-Unterstützung und benutzereigene Scannerliste.
+- Scanneradressen liegen unter `~/Library/Application Support/Samsung Scan/sane.d`. Die systemweite `xerox_mfp.conf` wird nicht überschrieben.
+- Website-Build mit Hardened Runtime, Netzwerk-Entitlement und SHA-256 der DMG.
+- Experimenteller Sandbox-Build: die App startet, findet `scanimage` außerhalb des Containers nicht und kann eine temporäre Datei schreiben. Kein App-Store-Release.
+- Am 6. November 2026 hat `scanimage` mit dieser Benutzerkonfiguration die Optionen des SL-C2670FW gelesen. Ein Einzugsscan wurde nicht gestartet.
+
 ## 1.1.0
 
 - Modulare Geräteadressen für `xerox_mfp`, eSCL und das Canon-Protokoll `pixma`. Samsung-Geräte bleiben bei `xerox_mfp`.

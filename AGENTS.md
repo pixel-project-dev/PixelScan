@@ -24,7 +24,8 @@ Diese Regeln gelten für alle weiteren Änderungen an Samsung Scan.
 - Keine Zugangsdaten, Schlüssel oder privaten Apple-Schnittstellen.
 - Keine Änderung an SIP, keinen Sandbox-Escape und keine stillen Administratoraktionen.
 - Keine Änderung an Druckertreibern und keine Veränderung der Druckfunktion.
-- Die SANE-Konfiguration wird nur geändert, wenn der Benutzer ein Backend ausdrücklich aktiviert. Erlaubt sind nur `xerox_mfp`, `escl`, `pixma` und `net`. Dabei wird nur diese eine Zeile in `dll.conf` ergänzt oder auskommentiert.
+- Scanneradressen für `xerox_mfp` schreibt die App in den eigenen Ordner des Benutzers und übergibt ihn als `SANE_CONFIG_DIR`. Die systemweite `xerox_mfp.conf` wird nicht automatisch verändert.
+- Die gemeinsame `dll.conf` wird nur geändert, wenn der Benutzer ein Backend ausdrücklich aktiviert. Erlaubt sind nur `xerox_mfp`, `escl`, `pixma` und `net`. Dabei wird nur diese eine Zeile ergänzt oder auskommentiert.
 - Eine Homebrew-Installation startet nur nach einem Klick auf „Mit Homebrew installieren“.
 - Die Netzwerksuche verwendet Bonjour. `_ipp._tcp` gilt nur dann als Vorschlag, wenn TCP 9400 antwortet. `_uscan._tcp` und `_uscans._tcp` sind Scan-Dienste und werden ohne zusätzlichen Port-Sweep übernommen. Es gibt keinen Subnetz-Sweep.
 

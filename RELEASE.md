@@ -1,4 +1,8 @@
-# Release 1.1.0
+# Release
+
+1.2.0 Build 3 ist ein Release Candidate. Die Notarisierung fehlt, daher gibt es keinen Tag `v1.2.0`.
+
+## Build
 
 ## Build
 
@@ -16,7 +20,8 @@ bash Scripts/build-release.sh
 Das Skript legt ab:
 
 - `dist/Samsung Scan.app`
-- `dist/SamsungScan-1.1.0-unnotarized.dmg`
+- `dist/SamsungScan-1.2.0-rc1-unnotarized.dmg`
+- `dist/SamsungScan-1.2.0-rc1-unnotarized.dmg.sha256`
 
 Die DMG enthält die Datei `Not notarized.txt`. Der Dateiname kennzeichnet dasselbe. `spctl` lehnt ein nicht notarisiertes Developer-ID-Programm ab.
 
@@ -25,7 +30,7 @@ Die DMG enthält die Datei `Not notarized.txt`. Der Dateiname kennzeichnet dasse
 Auf diesem Mac ist kein `notarytool`-Profil hinterlegt. Der verbleibende Schritt, sobald ein Zugang existiert:
 
 ```bash
-xcrun notarytool submit "dist/SamsungScan-1.1.0-unnotarized.dmg" --keychain-profile "<profil>" --wait
+xcrun notarytool submit "dist/SamsungScan-1.2.0-rc1-unnotarized.dmg" --keychain-profile "<profil>" --wait
 xcrun stapler staple "dist/Samsung Scan.app"
 ```
 

@@ -70,25 +70,10 @@ struct SANEInstallation: Equatable, Sendable {
 
     static func enableBackend(_ backend: String, at url: URL) throws {
         guard SANEConfigText.writableBackends.contains(backend) else { return }
-        var text = try String(contentsOf: url, encoding: .utf8)
-        let lines = text.components(separatedBy: .newlines)
-        var changed = false
-        let rewritten = lines.map { line -> String in
-            let trimmed = line.trimmingCharacters(in: .whitespaces)
-            if trimmed == "#\(backend)" || trimmed == "# \(backend)" {
-                changed = true
-                return backend
-            }
-            return line
-        }
-        text = rewritten.joined(separator: "\n")
-        if !SANEConfigText.enabledBackends(in: text).contains(backend) {
-            if !text.hasSuffix("\n") { text += "\n" }
-            text += backend + "\n"
-            changed = true
-        }
-        guard changed else { return }
-        try text.write(to: url, atomically: true, encoding: .utf8)
+        let text = try String(contentsOf: url, encoding: .utf8)
+        let rewritten = SANEConfigText.enabling(backend, in: text)
+        guard rewritten != text else { return }
+        try rewritten.write(to: url, atomically: true, encoding: .utf8)
     }
 
     private static func pathCandidates() -> [URL] {

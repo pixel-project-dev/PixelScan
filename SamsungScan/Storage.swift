@@ -8,6 +8,7 @@ struct AppStorageLayout: Equatable {
     var sessionPages: URL { root.appendingPathComponent("pages", isDirectory: true) }
     var inbox: URL { root.appendingPathComponent("inbox", isDirectory: true) }
     var logFile: URL { root.appendingPathComponent("scan.log") }
+    var saneDirectory: URL { root.appendingPathComponent("sane.d", isDirectory: true) }
 
     static func live() -> AppStorageLayout {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first

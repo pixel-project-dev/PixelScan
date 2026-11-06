@@ -17,7 +17,8 @@
 | Einrichtungsassistent | umgesetzt |
 | Intel-Hardwaretest von scanimage | offen, auf diesem Mac ist scanimage nur arm64 |
 | DMG und lokale Signierung | umgesetzt, sofern Zertifikat und `hdiutil` verfügbar sind |
-| Notarisierung | offen, kein Notary-Zugang auf diesem Mac |
+| Notarisierung | offen. `notarytool` hat kein gespeichertes Profil. 1.2.0 ist deshalb Release Candidate 1 |
+| Mac App Store | geprüft und mit der externen Engine nicht funktionsfähig. Siehe `APP_STORE_FEASIBILITY.md` |
 | Anzeige in Digitale Bilder / Vorschau als Scanner | nicht vorgesehen, keine öffentliche API |
 
 ## Offene Aufgaben

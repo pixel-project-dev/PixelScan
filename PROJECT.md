@@ -2,7 +2,7 @@
 
 ## Ziel
 
-Samsung Scan 1.1 ist eine eigenständige, kostenlose macOS-Anwendung für ältere Samsung-Multifunktionsgeräte. Der eigene Quellcode bleibt proprietär. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400.
+Samsung Scan 1.2 ist eine eigenständige, kostenlose macOS-Anwendung für ältere Samsung-Multifunktionsgeräte. Der eigene Quellcode bleibt proprietär. Der aktuelle Build ist ein nicht notarisiertes Release Candidate. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400.
 
 Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus und die Sprachen Deutsch und Englisch.
 

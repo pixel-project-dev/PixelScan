@@ -59,11 +59,17 @@ final class ProcessRunner: @unchecked Sendable {
     func run(
         executable: URL,
         arguments: [String],
+        configDirectory: URL? = nil,
         onStderr: @escaping @Sendable (String) -> Void = { _ in }
     ) async -> ProcessResult {
         await withCheckedContinuation { continuation in
             DispatchQueue.global(qos: .userInitiated).async {
-                let result = self.runBlocking(executable: executable, arguments: arguments, onStderr: onStderr)
+                let result = self.runBlocking(
+                    executable: executable,
+                    arguments: arguments,
+                    configDirectory: configDirectory,
+                    onStderr: onStderr
+                )
                 continuation.resume(returning: result)
             }
         }
@@ -72,13 +78,14 @@ final class ProcessRunner: @unchecked Sendable {
     private func runBlocking(
         executable: URL,
         arguments: [String],
+        configDirectory: URL?,
         onStderr: @escaping @Sendable (String) -> Void
     ) -> ProcessResult {
         let outPipe = Pipe()
         let errPipe = Pipe()
         process.executableURL = executable
         process.arguments = arguments
-        process.environment = childEnvironment()
+        process.environment = childEnvironment(configDirectory: configDirectory)
         process.standardOutput = outPipe
         process.standardError = errPipe
         process.standardInput = FileHandle.nullDevice
@@ -144,7 +151,7 @@ final class ProcessRunner: @unchecked Sendable {
         }
     }
 
-    private func childEnvironment() -> [String: String] {
+    private func childEnvironment(configDirectory: URL?) -> [String: String] {
         let source = ProcessInfo.processInfo.environment
         var environment: [String: String] = [:]
         let keep = ["PATH", "HOME", "USER", "LOGNAME", "TMPDIR", "LANG", "LC_ALL", "LC_CTYPE"]
@@ -153,8 +160,10 @@ final class ProcessRunner: @unchecked Sendable {
                 environment[key] = value
             }
         }
-        if let config = source["SANE_CONFIG_DIR"],
-           FileManager.default.fileExists(atPath: config) {
+        if let configDirectory {
+            environment["SANE_CONFIG_DIR"] = configDirectory.path
+        } else if let config = source["SANE_CONFIG_DIR"],
+                  FileManager.default.fileExists(atPath: config) {
             environment["SANE_CONFIG_DIR"] = config
         }
         if environment["PATH"] == nil {
