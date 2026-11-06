@@ -6,7 +6,7 @@ Samsung Scan ist eine unabhängige Anwendung. Samsung ist eine Marke des jeweili
 
 ## Installation
 
-1. Die DMG `dist/SamsungScan-1.0.0.dmg` öffnen.
+1. Die DMG `dist/SamsungScan-1.1.0-unnotarized.dmg` öffnen. Sie ist nicht notarisiert. macOS kann den ersten Start blockieren, bis das Abbild notarisiert und geklammert wurde.
 2. `Samsung Scan` in den Ordner Programme ziehen.
 3. Die App starten.
 4. Beim ersten Start fehlt in der Regel SANE. In der Einrichtung entweder den vorhandenen `scanimage`-Pfad wählen oder, wenn Homebrew schon installiert ist, **Mit Homebrew installieren** wählen.
@@ -20,7 +20,9 @@ SANE wird nicht in die App kopiert. Die Gründe stehen in `THIRD_PARTY_NOTICES.m
 ## Scanner hinzufügen
 
 - **Scanner hinzufügen** öffnet Name, IP-Adresse und Port.
-- **Suchen** hört auf Bonjour-Dienste und prüft bei Treffern nur TCP-Port 9400. Das lokale Subnetz wird nicht durchsucht.
+- Der Einrichtungsassistent sucht Scanner und bietet danach die manuelle Adresse an.
+- **Suchen** hört auf Bonjour. Druckdienste werden nur übernommen, wenn TCP 9400 antwortet. Scan-Dienste `_uscan._tcp` und `_uscans._tcp` werden direkt angezeigt. Das lokale Subnetz wird nicht durchsucht.
+- Unter **Erweitert** lässt sich die Verbindungsart wechseln. Samsung-Netzwerk bleibt die Voreinstellung.
 - **Verbindung prüfen** liest die Geräteoptionen mit `scanimage -A`.
 - Scanner lassen sich umbenennen und entfernen. Der zuletzt benutzte Scanner wird gemerkt.
 

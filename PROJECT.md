@@ -2,7 +2,7 @@
 
 ## Ziel
 
-Samsung Scan ist eine eigenständige macOS-Anwendung zum Scannen über Samsung-Netzwerkgeräte, die das SANE-Backend `xerox_mfp` auf TCP-Port 9400 sprechen. Das erste geprüfte Gerät ist der Samsung ProXpress SL-C2670FW.
+Samsung Scan 1.1 ist eine eigenständige, kostenlose macOS-Anwendung für ältere Samsung-Multifunktionsgeräte. Der eigene Quellcode bleibt proprietär. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400.
 
 Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus und die Sprachen Deutsch und Englisch.
 
@@ -12,11 +12,12 @@ Samsung Scan ist kein Produkt von Samsung Electronics. Samsung ist eine Marke de
 
 ```text
 SwiftUI
+  Einrichtungsassistent, Scannerliste, Seiten, Export
   AppModel
-    Scannerverwaltung, Profile, Seiten, Export
+    gespeichertes Backend, Profile, Sitzung
+  DeviceAddress / DiscoveryPolicy / CompatibilityDatabase
   ScanimageDriver
-    TCP-Prüfung -> scanimage -A / Scan
-    Process, Argument-Array, Abbruch
+    scanimage -A oder Scan, Argument-Array, Abbruch, Prüfzeit 20 s
   Bildstrecke
     Zuschnitt, Drehung, Helligkeit, Kontrast, Ausrichtung
     PDF, PNG, JPEG, TIFF, Vision-OCR
@@ -32,7 +33,7 @@ Die Entscheidung gegen eine direkte Verknüpfung mit `libsane` hat zwei Gründe.
 - Network.framework für die Portprüfung und Bonjour
 - ImageIO, Core Image, PDFKit, Vision
 - Xcode 27, Deployment-Ziel macOS 14
-- sane-backends 1.4.0, Backend `xerox_mfp`, Programm `scanimage`
+- sane-backends 1.4.0, Programm `scanimage`, Samsung-Pfad `xerox_mfp`
 
 ## Unterstützte Scanner
 
@@ -51,7 +52,8 @@ Weitere Samsung-Netzwerkscanner können gespeichert werden, wenn sie dieselbe `x
 
 - Scanner hinzufügen, umbenennen, entfernen und prüfen
 - Mehrere Scanner, zuletzt verwendeter Scanner, bearbeitbare Profile
-- Bonjour-Vorschläge ohne Subnetz-Scan, danach Prüfung von Port 9400
+- Bonjour-Vorschläge ohne Subnetz-Scan. Druckdienste nur bei offenem TCP 9400
+- Einrichtungsassistent und Kompatibilitätsdatenbank
 - Flachbett, Vorschau, Scanbereich, ADF mit mehreren Seiten
 - Seiten sortieren, löschen, drehen, zuschneiden, Helligkeit, Kontrast
 - Automatische Ausrichtung, wenn Vision ein belastbares Rechteck findet

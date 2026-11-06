@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0
+
+- Modulare Geräteadressen für `xerox_mfp`, eSCL und das Canon-Protokoll `pixma`. Samsung-Geräte bleiben bei `xerox_mfp`.
+- Backend-Auswahl nur nach vorhandener Bibliothek. `escl` ist in diesem Homebrew-Build in `dll.conf` genannt, `libsane-escl.so` fehlt und wird nicht automatisch geprüft.
+- `sane-airscan` und `hpaio` sind nicht installiert und werden nicht eingebaut.
+- Bonjour unterscheidet Druckdienste von Scan-Diensten. Ein Drucker wird nur vorgeschlagen, wenn TCP 9400 antwortet.
+- Einrichtungsassistent, erweiterte Verbindungsart und Erkennung von Apple-Silicon- und Intel-`scanimage`.
+- Versionierte Kompatibilitätsdatenbank. Nur der SL-C2670FW steht auf „getestet“.
+- Bestehende Scanner ohne gespeichertes Backend werden als Samsung-Netzwerk weiterverwendet.
+- Eine Geräteprüfung bricht nach 20 Sekunden ab.
+- Am 6. November 2026 hat die Engine 1.1 den SL-C2670FW erneut gelesen und einen Flachbettausschnitt von 40 mm × 40 mm geschrieben. Der Einzug wurde nicht gestartet.
+
 ## 1.0.0
 
 Erste Fassung von Samsung Scan.

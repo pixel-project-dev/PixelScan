@@ -14,7 +14,7 @@ Diese Regeln gelten für alle weiteren Änderungen an Samsung Scan.
 
 - Der Scan läuft über das separat installierte Programm `scanimage` aus sane-backends. Die App verlinkt `libsane` nicht.
 - `scanimage` wird mit `Process` und einem Argument-Array gestartet. Es gibt keinen Aufruf über eine Shell.
-- Host und Port werden vor dem Aufruf geprüft. Erlaubt sind IPv4-Adressen und DNS-Namen. Der Gerätename hat immer die Form `xerox_mfp:tcp <host> <port>`.
+- Host und Port werden vor dem Aufruf geprüft. Erlaubt sind IPv4-Adressen und DNS-Namen. Samsung-Netzwerkgeräte verwenden `xerox_mfp:tcp <host> <port>`. Weitere Gerätezeichenketten baut nur `DeviceAddress` für die dort zugelassenen Backends.
 - Auflösung, Quelle, Farbmodus und Scanfläche dürfen nur Werte verwenden, die das Gerät gemeldet hat.
 - Temporäre und Sitzungsdateien liegen im Anwendungsordner des Benutzers. Bereits geschriebene Seiten bleiben bei Abbruch, Papierstau und Netzwerkfehlern erhalten.
 - Bildbearbeitung, PDF, TIFF und OCR laufen lokal mit AppKit, ImageIO, PDFKit und Vision.
@@ -24,13 +24,13 @@ Diese Regeln gelten für alle weiteren Änderungen an Samsung Scan.
 - Keine Zugangsdaten, Schlüssel oder privaten Apple-Schnittstellen.
 - Keine Änderung an SIP, keinen Sandbox-Escape und keine stillen Administratoraktionen.
 - Keine Änderung an Druckertreibern und keine Veränderung der Druckfunktion.
-- Die SANE-Konfiguration wird nur geändert, wenn der Benutzer `xerox_mfp` in der App ausdrücklich aktiviert. Dabei wird nur diese eine Zeile in `dll.conf` ergänzt oder auskommentiert.
+- Die SANE-Konfiguration wird nur geändert, wenn der Benutzer ein Backend ausdrücklich aktiviert. Erlaubt sind nur `xerox_mfp`, `escl`, `pixma` und `net`. Dabei wird nur diese eine Zeile in `dll.conf` ergänzt oder auskommentiert.
 - Eine Homebrew-Installation startet nur nach einem Klick auf „Mit Homebrew installieren“.
-- Die Netzwerksuche verwendet Bonjour und prüft danach höchstens Port 9400 der gefundenen Hosts. Es gibt keinen Subnetz-Sweep.
+- Die Netzwerksuche verwendet Bonjour. `_ipp._tcp` gilt nur dann als Vorschlag, wenn TCP 9400 antwortet. `_uscan._tcp` und `_uscans._tcp` sind Scan-Dienste und werden ohne zusätzlichen Port-Sweep übernommen. Es gibt keinen Subnetz-Sweep.
 
 ## Tests
 
-- Vor einem Commit laufen die Unit-Tests für Geräteadressen, Optionen, Prozesssteuerung, Fehlertexte, Seitenverwaltung, Export und OCR.
+- Vor einem Commit laufen die Unit-Tests für Geräteadressen, Backends, Kompatibilität, Optionen, Prozesssteuerung, Fehlertexte, Seitenverwaltung, Export und OCR.
 - Hardwaretests sind mit `SAMSUNG_SCAN_LIVE=1` und `SAMSUNG_SCAN_HOST` geschützt. Ein kleiner Flachbettscan zusätzlich nur mit `SAMSUNG_SCAN_SCAN=1`.
 - Mock- und Parser-Tests dürfen keine Scanner-Hardware voraussetzen.
 

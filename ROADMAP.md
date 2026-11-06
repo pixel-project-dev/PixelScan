@@ -12,7 +12,10 @@
 | Scannerprofile und mehrere Geräte | umgesetzt |
 | Bonjour-Vorschläge ohne Subnetz-Sweep | umgesetzt |
 | Unit-Tests ohne Hardware | umgesetzt |
-| Hardwaretest über die Engine | am 6. November 2026 bestanden: Optionen gelesen, Flachbett 40 mm × 40 mm bei 75 dpi |
+| Hardwaretest über die Engine | am 6. November 2026 für 1.0 und erneut für 1.1 bestanden: Optionen gelesen, Flachbett 40 mm × 40 mm bei 75 dpi |
+| Mehrere Backends und Kompatibilitätsdatenbank | umgesetzt in 1.1.0 |
+| Einrichtungsassistent | umgesetzt |
+| Intel-Hardwaretest von scanimage | offen, auf diesem Mac ist scanimage nur arm64 |
 | DMG und lokale Signierung | umgesetzt, sofern Zertifikat und `hdiutil` verfügbar sind |
 | Notarisierung | offen, kein Notary-Zugang auf diesem Mac |
 | Anzeige in Digitale Bilder / Vorschau als Scanner | nicht vorgesehen, keine öffentliche API |
