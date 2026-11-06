@@ -1,0 +1,14 @@
+.DS_Store
+*.xcuserstate
+xcuserdata/
+DerivedData/
+build/
+dist/
+*.dmg
+*.app
+*.dSYM
+.swiftpm/
+.idea/
+*.log
+tmp/
+.rollback/
