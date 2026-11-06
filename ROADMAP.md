@@ -17,13 +17,14 @@
 | Einrichtungsassistent | umgesetzt |
 | Intel-Hardwaretest von scanimage | offen, auf diesem Mac ist scanimage nur arm64 |
 | DMG und lokale Signierung | umgesetzt, sofern Zertifikat und `hdiutil` verfügbar sind |
-| Notarisierung | offen. `notarytool` hat kein gespeichertes Profil. 1.2.0 ist deshalb Release Candidate 1 |
+| Notarisierung | abgeschlossen für `SamsungScan-1.2.0.dmg`. Gatekeeper akzeptiert die App |
 | Mac App Store | geprüft und mit der externen Engine nicht funktionsfähig. Siehe `APP_STORE_FEASIBILITY.md` |
 | Anzeige in Digitale Bilder / Vorschau als Scanner | nicht vorgesehen, keine öffentliche API |
 
 ## Offene Aufgaben
 
-- Notarisierung, sobald ein App-Store-Connect-Zugang für `notarytool` hinterlegt ist.
+- Intel-Hardwaretest von `scanimage`, sobald ein Intel-Mac verfügbar ist.
+- Bewusster ADF-Test mit eingelegtem Papier. Bisher wurde der Einzug dafür nicht gestartet.
 - Weitere Samsung-Modelle nur aufnehmen, nachdem ihre `xerox_mfp`-Optionen gelesen wurden.
 - IPv6 ist nicht freigeschaltet, weil die Gerätezeichenkette Host und Port mit einem Leerzeichen trennt und das Backend dafür nicht geprüft ist.
 - Automatische Ausrichtung bleibt konservativ. Winkel unter 0,4° und über 12° werden nicht angewendet.

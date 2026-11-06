@@ -1,50 +1,40 @@
-# Release
+# Release 1.2.0
 
-1.2.0 Build 3 ist ein Release Candidate. Die Notarisierung fehlt, daher gibt es keinen Tag `v1.2.0`.
+Build 3 ist das notariserte Website-Release. Es wird nicht hochgeladen, solange der Projektinhaber das nicht freigibt.
 
-## Build
+## Artefakt
 
-## Build
+- Datei: `dist/SamsungScan-1.2.0.dmg`
+- SHA-256: `7a74e9f712a00b270353fc0106b7d8157dfde906cc66acdda592ccae7ddcb1b8`
+- Dieselbe Summe steht in `dist/SamsungScan-1.2.0.dmg.sha256`
+- Inhalt: `Samsung Scan.app`, Alias auf den Programme-Ordner und eine ältere Textdatei `Not notarized.txt`
+- Die Textdatei stammt aus dem Release Candidate. Sie wurde nicht entfernt, weil jede Änderung der DMG das Notarisierungsticket ungültig machen würde.
 
-- Marketing-Version 1.1.0, Build 2
-- Deployment-Ziel macOS 14
-- Release-Architekturen `arm64` und `x86_64`
-- Hardened Runtime im Release
-- Keine App-Sandbox, weil `scanimage` außerhalb des Bundles liegt
-- Signatur, wenn vorhanden: `Developer ID Application: Norman Hennige (Z9U2P89679)`
+Geprüft am 7. November 2026:
 
-```bash
-bash Scripts/build-release.sh
-```
+- `hdiutil verify` meldet die DMG als gültig.
+- `xcrun stapler validate` bestätigt das Ticket der umbenannten DMG.
+- `codesign --verify --deep --strict` bestätigt die App im DMG.
+- `spctl --assess --type execute` akzeptiert die App mit `source=Notarized Developer ID`.
+- Eine Kopie aus dem DMG startete und ließ sich wieder beenden. Sie wurde nicht in den Programme-Ordner des Macs gelegt.
 
-Das Skript legt ab:
+Die App im DMG trägt kein eigenes angeheftetes Ticket. Gatekeeper akzeptiert sie trotzdem als notarisierte Developer-ID-App. Das Ticket hängt an der DMG.
 
-- `dist/Samsung Scan.app`
-- `dist/SamsungScan-1.2.0-rc1-unnotarized.dmg`
-- `dist/SamsungScan-1.2.0-rc1-unnotarized.dmg.sha256`
+## Signatur
 
-Die DMG enthält die Datei `Not notarized.txt`. Der Dateiname kennzeichnet dasselbe. `spctl` lehnt ein nicht notarisiertes Developer-ID-Programm ab.
+- `Developer ID Application: Norman Hennige (Z9U2P89679)`
+- Hardened Runtime
+- Universal Binary `arm64` und `x86_64`
+- Entitlements ohne App-Sandbox: `Config/SamsungScan.entitlements`
+- Zeitstempel der Signatur: 6. November 2026, 20:38 Uhr
 
-## Notarisierung
+Ein neuer Build mit `Scripts/build-release.sh` erzeugt eine andere, zunächst nicht notarisierte DMG. Die Datei `dist/SamsungScan-1.2.0.dmg` darf dabei nicht überschrieben werden.
 
-Auf diesem Mac ist kein `notarytool`-Profil hinterlegt. Der verbleibende Schritt, sobald ein Zugang existiert:
+## Offene Hardwaretests
 
-```bash
-xcrun notarytool submit "dist/SamsungScan-1.2.0-rc1-unnotarized.dmg" --keychain-profile "<profil>" --wait
-xcrun stapler staple "dist/Samsung Scan.app"
-```
+- Intel: nicht ausgeführt. `scanimage` von Homebrew auf dem Entwicklungsmac ist nur arm64.
+- ADF: nicht ausgeführt. Die Prüfungen haben kein Papier aus dem Einzug gezogen. Flachbett und die gemeldeten ADF-Optionen des SL-C2670FW wurden früher geprüft.
 
-Zugangsdaten gehören nicht ins Repository.
+## Website
 
-## Intel
-
-Die App ist ein Universal-Binary. `scanimage` von Homebrew auf dem Entwicklungsmac ist nur arm64. Ein Intel-Mac braucht sane-backends unter `/usr/local` oder einen selbst gewählten Pfad. Ein Lauf auf Intel-Hardware hat nicht stattgefunden. Die App meldet, wenn die Architektur des gefundenen `scanimage` nicht zur laufenden App passt.
-
-## Installation für Benutzer
-
-1. DMG öffnen.
-2. Samsung Scan nach Programme ziehen.
-3. App starten. Falls Gatekeeper blockiert, liegt das an der fehlenden Notarisierung.
-4. Dem lokalen Netzwerk zustimmen, wenn macOS fragt.
-5. Im Assistenten einen Scanner wählen oder die Adresse eintragen.
-6. Fehlt die Scannersoftware, in der Einrichtung **Mit Homebrew installieren** wählen oder die Homebrew-Website öffnen.
+Die DMG liegt bereit für einen kostenlosen Download. Ein Upload auf die Website hat nicht stattgefunden.

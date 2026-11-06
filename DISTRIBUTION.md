@@ -12,20 +12,11 @@ Das ist der vollständige Weg.
 - DMG mit Programm und Verknüpfung zum Programme-Ordner
 - Prüfsumme SHA-256 neben der DMG
 
-Aktueller Stand ist **1.2.0 Build 3, Release Candidate 1**.
+Aktueller Stand ist **1.2.0 Build 3**. Die Download-Datei ist `dist/SamsungScan-1.2.0.dmg`.
 
-`notarytool` hat auf diesem Mac kein Keychain-Profil. Die DMG heißt deshalb `SamsungScan-1.2.0-rc1-unnotarized.dmg`. Gatekeeper lehnt die signierte, nicht notarisierte App ab (`source=Unnotarized Developer ID`).
+SHA-256: `7a74e9f712a00b270353fc0106b7d8157dfde906cc66acdda592ccae7ddcb1b8`
 
-Notarisieren, sobald ein Profil existiert, ohne Zugangsdaten ins Repository zu schreiben:
-
-```bash
-xcrun notarytool store-credentials samsung-scan
-xcrun notarytool submit "dist/SamsungScan-1.2.0-rc1-unnotarized.dmg" --keychain-profile samsung-scan --wait
-xcrun stapler staple "dist/Samsung Scan.app"
-spctl --assess --type execute --verbose "dist/Samsung Scan.app"
-```
-
-Der Tag `v1.2.0` wird erst gesetzt, wenn dieser Schritt erfolgreich war.
+Gatekeeper akzeptiert die App aus dieser DMG mit `source=Notarized Developer ID`. Das Ticket blieb beim Umbenennen der notarisierten Release-Candidate-DMG erhalten. Ein Upload auf die Website erfolgt erst nach ausdrücklicher Freigabe.
 
 ## Mac App Store
 

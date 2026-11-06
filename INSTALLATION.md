@@ -7,7 +7,7 @@ Samsung Scan ist kostenlos. Es braucht kein Konto und keine Cloud.
 1. Die DMG öffnen.
 2. `Samsung Scan` auf den Alias **Programme** ziehen.
 3. Die App aus dem Programme-Ordner starten.
-4. Wenn macOS den Start blockiert, ist das Abbild noch nicht notarisiert. Das steht auch in der Datei `Not notarized.txt` in der DMG.
+4. Die DMG `SamsungScan-1.2.0.dmg` ist notarisiert. Gatekeeper akzeptiert die App. Eine Textdatei `Not notarized.txt` im Abbild ist ein überholter Hinweis aus dem Release Candidate und beschreibt nicht den Signaturstatus.
 
 ## Scannerprogramm
 

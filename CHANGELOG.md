@@ -1,8 +1,10 @@
 # Changelog
 
-## 1.2.0 Release Candidate 1
+## 1.2.0
 
-Build 3. Nicht notarisiert und deshalb kein fertiges Website-Release.
+Build 3. Die DMG `SamsungScan-1.2.0.dmg` ist notarisiert. Gatekeeper akzeptiert die enthaltene App mit `source=Notarized Developer ID`.
+
+Offen bleiben ein Hardwaretest auf einem Intel-Mac und ein bewusster ADF-Scan mit eingelegtem Papier. Der Einzug wurde in den Release-Prüfungen nicht gestartet.
 
 - Diagnose der Scannerinstallation: Programm, Prozessor, Samsung-Unterstützung und benutzereigene Scannerliste.
 - Scanneradressen liegen unter `~/Library/Application Support/Samsung Scan/sane.d`. Die systemweite `xerox_mfp.conf` wird nicht überschrieben.
