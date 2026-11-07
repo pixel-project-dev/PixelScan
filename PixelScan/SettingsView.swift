@@ -14,7 +14,7 @@ struct SettingsView: View {
             help
                 .tabItem { Label("Help", systemImage: "questionmark.circle") }
         }
-        .frame(width: 560, height: 460)
+        .frame(width: 560, height: 520)
         .padding(12)
     }
 
@@ -34,6 +34,13 @@ struct SettingsView: View {
             Section("Profiles") {
                 Button("Restore Default Profiles") { model.restoreDefaultProfiles() }
                 Text("Profiles can be edited from the scan sidebar.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Section("PixelProject") {
+                PixelProjectBrandLink(maxWidth: 180)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Developed by PixelProject")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

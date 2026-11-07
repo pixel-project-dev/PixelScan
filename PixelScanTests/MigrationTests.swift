@@ -8,15 +8,15 @@ final class MigrationTests: XCTestCase {
         XCTAssertEqual(ProductIdentity.supportFolderName, "PixelScan")
         XCTAssertEqual(ProductIdentity.legacySupportFolderName, "Samsung Scan")
         XCTAssertNotEqual(ProductIdentity.supportFolderName, ProductIdentity.legacySupportFolderName)
-        XCTAssertEqual(ProductIdentity.marketingVersion, "1.3.0")
-        XCTAssertEqual(ProductIdentity.buildNumber, "4")
+        XCTAssertEqual(ProductIdentity.marketingVersion, "1.3.1")
+        XCTAssertEqual(ProductIdentity.buildNumber, "5")
     }
 
     func testReleaseBundleMatchesTheShippedIdentity() throws {
         let bundle = try XCTUnwrap(Bundle(identifier: ProductIdentity.bundleIdentifier))
         XCTAssertEqual(bundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String, "PixelScan")
-        XCTAssertEqual(bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String, "1.3.0")
-        XCTAssertEqual(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String, "4")
+        XCTAssertEqual(bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String, "1.3.1")
+        XCTAssertEqual(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String, "5")
         XCTAssertEqual(bundle.bundleURL.lastPathComponent, "PixelScan.app")
     }
 

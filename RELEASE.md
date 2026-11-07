@@ -1,3 +1,7 @@
+# Entwicklungsstand 1.3.1
+
+PixelScan 1.3.1 Build 5 ist nicht veröffentlicht. Es gibt keine neue DMG, keinen neuen Tag und kein Release. Der Rollback-Tag `rollback/v1.3.0-build4` bleibt auf dem veröffentlichten Stand 1.3.0 Build 4.
+
 # Release 1.3.0
 
 PixelScan 1.3.0 Build 4 ist das notarisierte Release. Es wird nicht öffentlich hochgeladen, solange der Projektinhaber das nicht freigibt.

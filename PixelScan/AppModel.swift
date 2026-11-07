@@ -23,6 +23,7 @@ final class AppModel {
     var showPreviewArea = false
     var showNewProfile = false
     var showRenameScanner = false
+    var showAbout = false
     var showClearConfirmation = false
     var showBlankConfirmation = false
     var isCropping = false

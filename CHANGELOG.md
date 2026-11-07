@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+Build 5. Die PixelProject-Wortmarke ist als SVG hinterlegt und in Über PixelScan, den Einstellungen und auf der Willkommensseite des Einrichtungsassistenten sichtbar. Ein Klick öffnet `https://pixel-project.de` im Standardbrowser. Die veröffentlichte Fassung 1.3.0 Build 4 bleibt unverändert. Es gibt kein neues öffentliches Release.
+
 ## 1.3.0
 
 Build 4. Der Produktname ist PixelScan. Die Bundle-ID ist `email.hennige.pixelscan`. Beim ersten Start werden vorhandene Daten aus `~/Library/Application Support/Samsung Scan/` nach `~/Library/Application Support/PixelScan/` kopiert. Der alte Ordner bleibt erhalten, und vorhandene PixelScan-Dateien werden nicht überschrieben.

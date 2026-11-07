@@ -49,6 +49,9 @@ struct MainView: View {
                 model.renameSelectedScanner(to: name)
             }
         }
+        .sheet(isPresented: $model.showAbout) {
+            AboutPixelScanView()
+        }
         .confirmationDialog("Clear all pages?", isPresented: $model.showClearConfirmation) {
             Button("Clear Pages", role: .destructive) { model.clearPages() }
             Button("Cancel", role: .cancel) {}

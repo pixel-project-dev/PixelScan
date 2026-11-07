@@ -11,6 +11,9 @@ struct PixelScanApp: App {
         }
         .defaultSize(width: 1280, height: 820)
         .commands {
+            CommandGroup(replacing: .appInfo) {
+                Button("About PixelScan") { model.showAbout = true }
+            }
             CommandGroup(replacing: .newItem) {}
             CommandMenu("Scan") {
                 Button("Scan") { model.scan() }

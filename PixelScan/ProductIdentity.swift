@@ -5,6 +5,6 @@ enum ProductIdentity {
     static let bundleIdentifier = "email.hennige.pixelscan"
     static let supportFolderName = "PixelScan"
     static let legacySupportFolderName = "Samsung Scan"
-    static let marketingVersion = "1.3.0"
-    static let buildNumber = "4"
+    static let marketingVersion = "1.3.1"
+    static let buildNumber = "5"
 }

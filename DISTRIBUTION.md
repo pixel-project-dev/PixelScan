@@ -12,7 +12,7 @@ Das ist der vollständige Weg.
 - DMG mit Programm und Verknüpfung zum Programme-Ordner
 - Prüfsumme SHA-256 neben der DMG
 
-Aktueller Stand ist **PixelScan 1.3.0 Build 4**. Die vorgesehene Download-Datei ist `dist/PixelScan-1.3.0.dmg`. Die ältere Datei `dist/SamsungScan-1.2.0.dmg` bleibt der letzte Stand unter dem bisherigen Namen.
+Veröffentlicht ist **PixelScan 1.3.0 Build 4**. Die Download-Datei ist `dist/PixelScan-1.3.0.dmg`. Die ältere Datei `dist/SamsungScan-1.2.0.dmg` bleibt der letzte Stand unter dem bisherigen Namen. Der private Stand 1.3.1 Build 5 hat keine Download-Datei.
 
 SHA-256: `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`
 

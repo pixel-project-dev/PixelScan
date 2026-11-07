@@ -223,3 +223,11 @@
 "Processor: %@" = "Prozessor: %@";
 "Enable samsung support in the shared configuration" = "Samsung-Unterstützung in der gemeinsamen Konfiguration aktivieren";
 "This writes one line into the shared scanner configuration. Printer drivers are not changed." = "Damit wird eine Zeile in die gemeinsame Scannerkonfiguration geschrieben. Druckertreiber werden nicht verändert.";
+"About PixelScan" = "Über PixelScan";
+"Developed by PixelProject" = "Entwickelt von PixelProject";
+"Project website" = "Projektwebsite";
+"PixelProject – Open website" = "PixelProject – Website öffnen";
+"Opens pixel-project.de in the default browser" = "Öffnet pixel-project.de im Standardbrowser";
+"Version %@ (Build %@)" = "Version %@ (Build %@)";
+"PixelScan scans documents on this Mac and keeps the pages local." = "PixelScan scannt Dokumente auf diesem Mac und behält die Seiten lokal.";
+"PixelScan is free and proprietary. Scanning stays on this Mac." = "PixelScan ist kostenlos und proprietär. Das Scannen bleibt auf diesem Mac.";

@@ -62,6 +62,8 @@ struct SetupWizard: View {
             Text("PixelScan looks for a scanner on your network and keeps every page on this Mac.")
             Text("No account and no cloud service are required.")
                 .foregroundStyle(.secondary)
+            Spacer()
+            PixelProjectBrandLink(maxWidth: 180)
         case 1:
             HStack {
                 if model.discovery.isRunning {
