@@ -28,5 +28,5 @@ else
 fi
 
 bash Scripts/make-dmg.sh
-echo "Fertig: dist/Samsung Scan.app und dist/SamsungScan-1.2.0-rc1-unnotarized.dmg"
-echo "Notarisierung ist nicht enthalten. Ein notarytool-Profil ist auf diesem Mac nicht eingerichtet."
+echo "Fertig: dist/Samsung Scan.app und dist/SamsungScan-1.2.0-unnotarized.dmg"
+echo "Notarisierung ist nicht enthalten. dist/SamsungScan-1.2.0.dmg bleibt unverändert."

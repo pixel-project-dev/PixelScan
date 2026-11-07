@@ -6,7 +6,7 @@ Samsung Scan ist eine unabhängige Anwendung. Samsung ist eine Marke des jeweili
 
 ## Installation
 
-1. Die DMG `dist/SamsungScan-1.2.0.dmg` öffnen. Sie ist mit einer Developer ID signiert und notarisiert.
+1. Die DMG `dist/SamsungScan-1.2.0.dmg` öffnen. Sie ist mit einer Developer ID signiert und notarisiert. Die Prüfsumme steht in `dist/SamsungScan-1.2.0.dmg.sha256`.
 2. `Samsung Scan` in den Ordner Programme ziehen.
 3. Die App starten.
 4. Beim ersten Start fehlt in der Regel SANE. In der Einrichtung entweder den vorhandenen `scanimage`-Pfad wählen oder, wenn Homebrew schon installiert ist, **Mit Homebrew installieren** wählen.

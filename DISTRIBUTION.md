@@ -14,9 +14,9 @@ Das ist der vollständige Weg.
 
 Aktueller Stand ist **1.2.0 Build 3**. Die Download-Datei ist `dist/SamsungScan-1.2.0.dmg`.
 
-SHA-256: `7a74e9f712a00b270353fc0106b7d8157dfde906cc66acdda592ccae7ddcb1b8`
+SHA-256: `86adc0bb83744b08e1fae382ef864ba8101b6d0d783d1556b3080db79253a7d1`
 
-Gatekeeper akzeptiert die App aus dieser DMG mit `source=Notarized Developer ID`. Das Ticket blieb beim Umbenennen der notarisierten Release-Candidate-DMG erhalten. Ein Upload auf die Website erfolgt erst nach ausdrücklicher Freigabe.
+Die DMG enthält die App, die Verknüpfung zum Programme-Ordner und `Installation.txt`. Gatekeeper akzeptiert die App mit `source=Notarized Developer ID`. Ein Upload auf die Website erfolgt erst nach ausdrücklicher Freigabe.
 
 ## Mac App Store
 

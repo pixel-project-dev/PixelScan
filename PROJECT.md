@@ -2,7 +2,7 @@
 
 ## Ziel
 
-Samsung Scan 1.2.0 ist eine eigenständige, kostenlose macOS-Anwendung für ältere Samsung-Multifunktionsgeräte. Der eigene Quellcode bleibt proprietär, das Repository privat. Build 3 ist signiert und notarisiert. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan mit Papier stehen noch aus.
+Samsung Scan 1.2.0 ist eine eigenständige, kostenlose macOS-Anwendung für ältere Samsung-Multifunktionsgeräte. Der eigene Quellcode bleibt proprietär, das Repository privat. Build 3 ist signiert. Das saubere DMG ist notarisiert und enthält keine Release-Candidate-Datei. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan mit Papier stehen noch aus.
 
 Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus und die Sprachen Deutsch und Englisch.
 
