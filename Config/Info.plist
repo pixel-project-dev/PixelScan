@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Samsung Scan</string>
+	<string>PixelScan</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,8 +41,8 @@
 		<string>_ipp._tcp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Samsung Scan looks for scanners that announce themselves on the local network.</string>
+	<string>PixelScan looks for scanners that announce themselves on the local network.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Samsung Scan is an independent application. Samsung is a trademark of its owner.</string>
+	<string>PixelScan is an independent application. Samsung is a trademark of its owner.</string>
 </dict>
 </plist>

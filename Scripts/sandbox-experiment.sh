@@ -2,13 +2,13 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-SOURCE="dist/Samsung Scan.app"
+SOURCE="dist/PixelScan.app"
 if [[ ! -d "$SOURCE" ]]; then
-  echo "dist/Samsung Scan.app fehlt." >&2
+  echo "dist/PixelScan.app fehlt." >&2
   exit 1
 fi
 
-TARGET="build/Samsung Scan Sandbox.app"
+TARGET="build/PixelScan Sandbox.app"
 rm -rf "$TARGET"
 mkdir -p build
 cp -R "$SOURCE" "$TARGET"
@@ -18,5 +18,5 @@ codesign --force --deep --options runtime --timestamp \
   "$TARGET"
 codesign --verify --verbose=2 "$TARGET"
 codesign -d --entitlements - "$TARGET" > build/sandbox-entitlements.txt
-"$TARGET/Contents/MacOS/Samsung Scan" --sandbox-probe > build/sandbox-probe.txt 2> build/sandbox-probe.err || true
+"$TARGET/Contents/MacOS/PixelScan" --sandbox-probe > build/sandbox-probe.txt 2> build/sandbox-probe.err || true
 echo "wrote build/sandbox-probe.txt"

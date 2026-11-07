@@ -12,20 +12,23 @@ enum LiveCheck {
     }
 
     static func run() async throws {
-        let configURL = URL(fileURLWithPath: "/tmp/samsung-scan-live.env")
-        let text = (try? String(contentsOf: configURL, encoding: .utf8)) ?? ""
         var config: [String: String] = [:]
-        for line in text.split(separator: "\n") {
-            let parts = line.split(separator: "=", maxSplits: 1).map(String.init)
-            if parts.count == 2 { config[parts[0]] = parts[1] }
+        for path in ["/tmp/pixelscan-live.env", "/tmp/samsung-scan-live.env"] {
+            let text = (try? String(contentsOf: URL(fileURLWithPath: path), encoding: .utf8)) ?? ""
+            for line in text.split(separator: "\n") {
+                let parts = line.split(separator: "=", maxSplits: 1).map(String.init)
+                if parts.count == 2, config[parts[0]] == nil { config[parts[0]] = parts[1] }
+            }
         }
-        guard config["SAMSUNG_SCAN_LIVE"] == "1",
-              let host = config["SAMSUNG_SCAN_HOST"],
-              DeviceName.isValidHost(host) else {
+        func setting(_ name: String) -> String {
+            config["PIXELSCAN_\(name)"] ?? config["SAMSUNG_SCAN_\(name)"] ?? ""
+        }
+        let host = setting("HOST")
+        guard setting("LIVE") == "1", DeviceName.isValidHost(host) else {
             fputs("live config missing\n", stderr)
             exit(2)
         }
-        let port = Int(config["SAMSUNG_SCAN_PORT"] ?? "") ?? 9400
+        let port = Int(setting("PORT")) ?? 9400
         let installation = SANEInstallation.locate(overridePath: nil)
         guard let executable = installation.scanimageURL else {
             fputs("scanimage missing\n", stderr)
@@ -45,8 +48,8 @@ enum LiveCheck {
             fputs("unexpected capabilities\n", stderr)
             exit(4)
         }
-        guard config["SAMSUNG_SCAN_SCAN"] == "1" else { return }
-        let directory = FileManager.default.temporaryDirectory.appendingPathComponent("SamsungScan-live-\(UUID().uuidString)", isDirectory: true)
+        guard setting("SCAN") == "1" else { return }
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent("PixelScan-live-\(UUID().uuidString)", isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         let resolution = capabilities.resolutions.contains(75) ? 75 : capabilities.resolutions[0]
         let request = ScanRequest(

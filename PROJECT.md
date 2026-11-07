@@ -1,12 +1,20 @@
-# Samsung Scan
+# PixelScan
 
 ## Ziel
 
-Samsung Scan 1.2.0 ist eine eigenständige, kostenlose macOS-Anwendung für ältere Samsung-Multifunktionsgeräte. Der eigene Quellcode bleibt proprietär, das Repository privat. Build 3 ist signiert. Das saubere DMG ist notarisiert und enthält keine Release-Candidate-Datei. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan mit Papier stehen noch aus.
+PixelScan 1.3.0 ist eine eigenständige, kostenlose macOS-Anwendung für kompatible Netzwerkscanner. Der frühere Name ist Samsung Scan. Der eigene Quellcode bleibt proprietär, das private Repository bleibt privat. Build 4 verwendet die Bundle-ID `email.hennige.pixelscan`. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan aus dem Fenster mit Papier stehen noch aus.
 
 Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus und die Sprachen Deutsch und Englisch.
 
-Samsung Scan ist kein Produkt von Samsung Electronics. Samsung ist eine Marke des jeweiligen Inhabers.
+PixelScan ist kein Produkt von Samsung Electronics. Samsung ist eine Marke des jeweiligen Inhabers.
+
+Öffentliche Texte stehen in `README.md`, `README.de.md` und `docs/`. Interne Release-Schritte stehen in `RELEASE.md`. `Scripts/publish-github.sh` überträgt nichts, solange keine ausdrückliche Freigabe gesetzt ist, und fügt GitHub nicht als Remote dieses Repositorys hinzu.
+
+Entwicklung:
+
+```sh
+xcodebuild -project PixelScan.xcodeproj -scheme PixelScan -destination 'platform=macOS' -configuration Debug -derivedDataPath build/DerivedData test
+```
 
 ## Architektur
 
@@ -69,4 +77,4 @@ Image Capture und die Vorschau können diesen Scanner nicht über eine öffentli
 
 ## Daten
 
-Die Bibliothek, die Sitzung und das Protokoll liegen in `~/Library/Application Support/Samsung Scan/`.
+Die Bibliothek, die Sitzung und das Protokoll liegen in `~/Library/Application Support/PixelScan/`. Ein vorhandener Ordner `Samsung Scan` wird kopiert und nicht gelöscht.

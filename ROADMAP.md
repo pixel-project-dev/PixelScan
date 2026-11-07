@@ -17,7 +17,7 @@
 | Einrichtungsassistent | umgesetzt |
 | Intel-Hardwaretest von scanimage | offen, auf diesem Mac ist scanimage nur arm64 |
 | DMG und lokale Signierung | umgesetzt, sofern Zertifikat und `hdiutil` verfügbar sind |
-| Notarisierung | abgeschlossen für das saubere `SamsungScan-1.2.0.dmg`. Gatekeeper akzeptiert die App |
+| Notarisierung | abgeschlossen für `PixelScan-1.3.0.dmg`. Gatekeeper akzeptiert die App |
 | Mac App Store | geprüft und mit der externen Engine nicht funktionsfähig. Siehe `APP_STORE_FEASIBILITY.md` |
 | Anzeige in Digitale Bilder / Vorschau als Scanner | nicht vorgesehen, keine öffentliche API |
 

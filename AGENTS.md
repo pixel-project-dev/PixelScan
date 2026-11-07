@@ -1,6 +1,6 @@
-# Entwicklungsregeln für Samsung Scan
+# Entwicklungsregeln für PixelScan
 
-Diese Regeln gelten für alle weiteren Änderungen an Samsung Scan.
+Diese Regeln gelten für alle weiteren Änderungen an PixelScan. Der frühere Produktname ist Samsung Scan. Bestehende Daten unter `~/Library/Application Support/Samsung Scan/` werden kopiert und nicht gelöscht.
 
 ## Arbeitsweise
 
@@ -32,7 +32,7 @@ Diese Regeln gelten für alle weiteren Änderungen an Samsung Scan.
 ## Tests
 
 - Vor einem Commit laufen die Unit-Tests für Geräteadressen, Backends, Kompatibilität, Optionen, Prozesssteuerung, Fehlertexte, Seitenverwaltung, Export und OCR.
-- Hardwaretests sind mit `SAMSUNG_SCAN_LIVE=1` und `SAMSUNG_SCAN_HOST` geschützt. Ein kleiner Flachbettscan zusätzlich nur mit `SAMSUNG_SCAN_SCAN=1`.
+- Hardwaretests sind mit `PIXELSCAN_LIVE=1` und `PIXELSCAN_HOST` geschützt. Ein kleiner Flachbettscan zusätzlich nur mit `PIXELSCAN_SCAN=1`. Die älteren Namen `SAMSUNG_SCAN_LIVE`, `SAMSUNG_SCAN_HOST` und `SAMSUNG_SCAN_SCAN` werden noch gelesen.
 - Mock- und Parser-Tests dürfen keine Scanner-Hardware voraussetzen.
 
 ## Git
@@ -44,5 +44,5 @@ Diese Regeln gelten für alle weiteren Änderungen an Samsung Scan.
 
 ## Lizenzen
 
-- sane-backends steht unter der GPL. Frontends sind GPL, die meisten Backends haben eine Verknüpfungsausnahme. Samsung Scan bündelt diese Programme nicht und startet `scanimage` als eigenes Programm.
+- sane-backends steht unter der GPL. Frontends sind GPL, die meisten Backends haben eine Verknüpfungsausnahme. PixelScan bündelt diese Programme nicht und startet `scanimage` als eigenes Programm.
 - Die genauen Hinweise stehen in `THIRD_PARTY_NOTICES.md`.

@@ -1,6 +1,6 @@
 # Kompatibilität
 
-Die Datenbank liegt in `SamsungScan/Resources/compatibility.json`, Schema 1. Sie wird mit der App ausgeliefert und nicht aus dem Netzwerk geladen.
+Die Datenbank liegt in `PixelScan/Resources/compatibility.json`, Schema 1. Sie wird mit der App ausgeliefert und nicht aus dem Netzwerk geladen. Die öffentliche Kurzfassung steht in `docs/COMPATIBILITY.md`.
 
 ## Status
 

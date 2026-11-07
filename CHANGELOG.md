@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0
+
+Build 4. Der Produktname ist PixelScan. Die Bundle-ID ist `email.hennige.pixelscan`. Beim ersten Start werden vorhandene Daten aus `~/Library/Application Support/Samsung Scan/` nach `~/Library/Application Support/PixelScan/` kopiert. Der alte Ordner bleibt erhalten, und vorhandene PixelScan-Dateien werden nicht überschrieben.
+
+Die öffentliche Dokumentation ist zweisprachig. Ein Upload nach GitHub oder auf eine Website gehört nicht zu diesem Stand.
+
+Offen bleiben der Intel-Hardwaretest und ein ADF-Scan aus dem PixelScan-Fenster mit eingelegtem Papier.
+
 ## 1.2.0
 
 Build 3. Die DMG `SamsungScan-1.2.0.dmg` ist erneut notarisiert und enthält nur die App, die Verknüpfung zum Programme-Ordner und `Installation.txt`. Gatekeeper akzeptiert die enthaltene App mit `source=Notarized Developer ID`.

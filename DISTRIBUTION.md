@@ -12,11 +12,11 @@ Das ist der vollständige Weg.
 - DMG mit Programm und Verknüpfung zum Programme-Ordner
 - Prüfsumme SHA-256 neben der DMG
 
-Aktueller Stand ist **1.2.0 Build 3**. Die Download-Datei ist `dist/SamsungScan-1.2.0.dmg`.
+Aktueller Stand ist **PixelScan 1.3.0 Build 4**. Die vorgesehene Download-Datei ist `dist/PixelScan-1.3.0.dmg`. Die ältere Datei `dist/SamsungScan-1.2.0.dmg` bleibt der letzte Stand unter dem bisherigen Namen.
 
-SHA-256: `86adc0bb83744b08e1fae382ef864ba8101b6d0d783d1556b3080db79253a7d1`
+SHA-256: `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`
 
-Die DMG enthält die App, die Verknüpfung zum Programme-Ordner und `Installation.txt`. Gatekeeper akzeptiert die App mit `source=Notarized Developer ID`. Ein Upload auf die Website erfolgt erst nach ausdrücklicher Freigabe.
+Ein Upload auf eine Website oder nach GitHub erfolgt erst nach ausdrücklicher Freigabe. `Scripts/publish-github.sh` bricht ohne diese Freigabe ab und überträgt keinen Quellcode.
 
 ## Mac App Store
 

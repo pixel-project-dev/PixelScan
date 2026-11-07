@@ -1,6 +1,6 @@
 # Installation
 
-Samsung Scan ist kostenlos. Es braucht kein Konto und keine Cloud.
+PixelScan ist kostenlos. Es braucht kein Konto und keine Cloud. Die öffentliche Fassung dieser Anleitung steht in `docs/INSTALLATION.md` und `docs/INSTALLATION.de.md`.
 
 ## Programm installieren
 
