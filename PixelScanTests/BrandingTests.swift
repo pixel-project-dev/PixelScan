@@ -69,6 +69,11 @@ final class BrandingTests: XCTestCase {
         XCTAssertTrue(text.contains("\"Version %@ (Build %@)\" = \"Version %@ (Build %@)\";"))
     }
 
+    func testMainWindowShowsTheBrandLink() throws {
+        let sidebar = try String(contentsOf: sourceRoot().appendingPathComponent("PixelScan/ScannerSidebar.swift"), encoding: .utf8)
+        XCTAssertTrue(sidebar.contains("PixelProjectBrandLink"))
+    }
+
     func testApplicationSourceDoesNotOpenTheWebsiteAtLaunch() throws {
         let app = try String(contentsOf: sourceRoot().appendingPathComponent("PixelScan/PixelScanApp.swift"), encoding: .utf8)
         let model = try String(contentsOf: sourceRoot().appendingPathComponent("PixelScan/AppModel.swift"), encoding: .utf8)

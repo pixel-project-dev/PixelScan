@@ -63,6 +63,9 @@ struct ScannerSidebar: View {
                     Button("Refresh") { Task { await model.refreshConnection() } }
                         .disabled(model.library.selectedScanner == nil || model.isScanning)
                 }
+                PixelProjectBrandLink(maxWidth: 168)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 4)
             }
             .padding(12)
         }
