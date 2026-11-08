@@ -28,7 +28,7 @@ PDF, PNG, JPEG, TIFF und die Texterkennung verwenden Frameworks, die zu macOS ge
 
 ## Gatekeeper
 
-Verwenden Sie die notarisierte `PixelScan-1.3.0.dmg` und ihre SHA-256-Datei. Ein nicht notarisiertes neues Image ist eine andere Datei und kann abgelehnt werden. Eine Änderung des Disk-Images nach dem Anheften des Tickets macht das Ticket ungültig.
+Verwenden Sie die notarisierte `PixelScan-1.3.1.dmg` und ihre SHA-256-Datei. Ein nicht notarisiertes neues Image ist eine andere Datei und kann abgelehnt werden. Eine Änderung des Disk-Images nach dem Anheften des Tickets macht das Ticket ungültig. Das ältere notarisierte Image `PixelScan-1.3.0.dmg` bleibt für diese Version gültig.
 
 ## Alte Einstellungen sind nicht erschienen
 

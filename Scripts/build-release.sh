@@ -29,6 +29,6 @@ else
 fi
 
 bash Scripts/make-dmg.sh
-echo "Fertig: dist/PixelScan.app und dist/PixelScan-1.3.0-unnotarized.dmg"
+echo "Fertig: dist/PixelScan.app und dist/PixelScan-1.3.1-unnotarized.dmg"
 echo "Die notarisierte Datei dist/PixelScan-1.3.0.dmg wird nicht ersetzt."
 echo "Öffentliche Veröffentlichung ist nicht enthalten."

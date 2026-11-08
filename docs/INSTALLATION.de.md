@@ -13,7 +13,7 @@ Die Anwendung ist ein Universal Binary. Das Scannerprogramm ist nicht enthalten 
 
 ## PixelScan installieren
 
-1. Holen Sie `PixelScan-1.3.0.dmg` von der betreuenden Person oder, nach der Veröffentlichung, aus dem GitHub-Release.
+1. Holen Sie `PixelScan-1.3.1.dmg` aus dem GitHub-Release. Das vorherige Image `PixelScan-1.3.0.dmg` bleibt dort verfügbar.
 2. Vergleichen Sie die SHA-256-Prüfsumme mit der veröffentlichten `.sha256`-Datei.
 3. Öffnen Sie das Disk-Image.
 4. Ziehen Sie PixelScan in den Ordner Programme.

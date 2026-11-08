@@ -4,9 +4,18 @@
 
 ![PixelScan-Symbol](docs/pixelscan-icon.png)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/pixelproject-logo-dark.svg">
+  <img src="docs/pixelproject-logo-light.svg" alt="pixelproject." width="280">
+</picture>
+
 PixelScan ist eine kostenlose, native macOS-Anwendung zum Scannen und Aufbereiten von Dokumenten mit kompatiblen Netzwerk- und Multifunktionsscannern. Seiten, Texterkennung und Exporte bleiben auf dem Mac. Ein Konto, ein Abonnement oder ein Cloud-Dienst ist nicht erforderlich.
 
 PixelScan ist kein Produkt von Samsung Electronics. Samsung ist eine Marke des jeweiligen Inhabers. Das erste praktisch geprüfte Gerät ist ein Samsung-Netzwerkscanner. Die Anwendung ist so gebaut, dass weitere Scannerfamilien ergänzt werden können, sobald ihr Verhalten tatsächlich geprüft wurde.
+
+## Für wen PixelScan gedacht ist
+
+PixelScan ist für Personen, die auf einem Mac Dokumente scannen möchten, ohne Konto und ohne Cloud-Dienst. Es richtet sich an kompatible Netzwerk- und Multifunktionsscanner, beginnend mit älteren Samsung-Geräten, die das SANE-Backend `xerox_mfp` sprechen. Es ist kein Versprechen, dass jeder Scanner jedes Herstellers funktioniert.
 
 ## Screenshots
 
@@ -66,7 +75,7 @@ Der Flachbetttest des SL-C2670FW war am 6. November 2026 ein Ausschnitt von 40 m
 
 ## Installation
 
-1. Öffnen Sie `PixelScan-1.3.0.dmg`, sobald sie veröffentlicht wurde, oder öffnen Sie ein Disk-Image, das die betreuende Person Ihnen unmittelbar gegeben hat.
+1. Öffnen Sie `PixelScan-1.3.1.dmg`.
 2. Ziehen Sie **PixelScan** in den Ordner Programme.
 3. Öffnen Sie PixelScan aus dem Programme-Ordner. Beim ersten Start kann macOS nach der Erlaubnis fragen, Geräte im lokalen Netzwerk zu finden. Erlauben Sie das.
 4. Wenn macOS fragt, ob ein Programm eines identifizierten Entwicklers geöffnet werden soll: Das veröffentlichte Image ist mit einer Developer ID signiert und notarisiert. Vergleichen Sie die veröffentlichte SHA-256-Prüfsumme mit genau dieser Datei, bevor Sie eine Kopie aus einer anderen Quelle öffnen.
@@ -160,18 +169,24 @@ Weitere Fälle stehen in [docs/TROUBLESHOOTING.de.md](docs/TROUBLESHOOTING.de.md
 
 ## Downloads und Releases
 
-Die Release-Datei heißt `PixelScan-1.3.0.dmg`, daneben liegt `PixelScan-1.3.0.dmg.sha256`. SHA-256 des notarisierten Images:
+PixelScan 1.3.1 steht im GitHub-Release. Das Release enthält das notarisierte Disk-Image, die Prüfsumme und das PixelProject-Logo.
 
-`2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`
+- [Release-Seite](https://github.com/pixel-project-dev/PixelScan/releases/tag/v1.3.1)
+- [Aktuelles Release](https://github.com/pixel-project-dev/PixelScan/releases/latest)
+- [PixelScan-1.3.1.dmg](https://github.com/pixel-project-dev/PixelScan/releases/download/v1.3.1/PixelScan-1.3.1.dmg)
 
-Das öffentliche Bereitstellen dieser Datei ist ein eigener Schritt. Dieses Repository lädt sie nicht auf eine Website, in ein öffentliches Gitea-Release oder nach GitHub hoch, solange die betreuende Person das nicht ausdrücklich erlaubt.
+SHA-256 des notarisierten Images:
 
-Wenn ein öffentliches GitHub-Release existiert, enthält es nur das Disk-Image, die Prüfsumme und die Versionshinweise. Der Quellcode der Anwendung ist proprietär und gehört nicht in das öffentliche Repository.
+`39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`
+
+Das vorherige notarisierte Image bleibt `PixelScan-1.3.0.dmg`, SHA-256 `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`.
+
+Das Release enthält das Disk-Image, die Prüfsumme, das PixelProject-Logo und diese Hinweise. Der Quellcode der Anwendung ist proprietär und gehört nicht in das öffentliche Repository.
 
 Prüfen Sie nach dem Download die veröffentlichte SHA-256-Summe:
 
 ```sh
-shasum -a 256 -c PixelScan-1.3.0.dmg.sha256
+shasum -a 256 -c PixelScan-1.3.1.dmg.sha256
 ```
 
 ## Häufig gestellte Fragen

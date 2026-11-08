@@ -13,7 +13,7 @@ The application is universal. The scanner program is not included and must match
 
 ## Install PixelScan
 
-1. Obtain `PixelScan-1.3.0.dmg` from the maintainer or, after publication, from the GitHub release.
+1. Obtain `PixelScan-1.3.1.dmg` from the GitHub release. The previous image `PixelScan-1.3.0.dmg` remains available there.
 2. Compare the SHA-256 checksum with the published `.sha256` file.
 3. Open the disk image.
 4. Drag PixelScan to Applications.

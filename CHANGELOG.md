@@ -2,7 +2,7 @@
 
 ## 1.3.1
 
-Build 5. Die PixelProject-Wortmarke ist als SVG hinterlegt und in Über PixelScan, den Einstellungen und auf der Willkommensseite des Einrichtungsassistenten sichtbar. Ein Klick öffnet `https://pixel-project.de` im Standardbrowser. Die veröffentlichte Fassung 1.3.0 Build 4 bleibt unverändert. Es gibt kein neues öffentliches Release.
+Build 5. Die PixelProject-Wortmarke ist als SVG hinterlegt und im Hauptfenster, in Über PixelScan, in den Einstellungen und auf der Willkommensseite sichtbar. Ein Klick öffnet `https://pixel-project.de` im Standardbrowser. Das notarisierte Image ist `PixelScan-1.3.1.dmg`. Die Datei `PixelScan-1.3.0.dmg` bleibt unverändert.
 
 ## 1.3.0
 

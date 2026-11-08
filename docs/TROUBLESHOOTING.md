@@ -28,7 +28,7 @@ PDF, PNG, JPEG, TIFF and OCR use frameworks that are part of macOS. They do not 
 
 ## Gatekeeper
 
-Use the notarized `PixelScan-1.3.0.dmg` and its SHA-256 file. An unnotarized rebuild is a different file and can be rejected. Changing the disk image after the ticket is stapled invalidates the ticket.
+Use the notarized `PixelScan-1.3.1.dmg` and its SHA-256 file. An unnotarized rebuild is a different file and can be rejected. Changing the disk image after the ticket is stapled invalidates the ticket. The older notarized image `PixelScan-1.3.0.dmg` remains valid for that version.
 
 ## Old settings did not appear
 

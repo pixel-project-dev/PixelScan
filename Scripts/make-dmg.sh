@@ -3,7 +3,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 APP="dist/PixelScan.app"
-DMG="dist/PixelScan-1.3.0-unnotarized.dmg"
+DMG="dist/PixelScan-1.3.1-unnotarized.dmg"
 if [[ ! -d "$APP" ]]; then
   echo "dist/PixelScan.app fehlt. Zuerst Scripts/build-release.sh ausführen." >&2
   exit 1
@@ -16,14 +16,14 @@ ln -s /Applications "$STAGE/Applications"
 mkdir -p dist
 rm -f "$DMG" "$DMG.sha256"
 cat > "$STAGE/Installation.txt" <<'EOF'
-PixelScan 1.3.0
+PixelScan 1.3.1
 
 1. Drag PixelScan to the Applications folder.
 2. Open PixelScan from the Applications folder.
 3. Allow local network access if macOS asks.
 4. Follow the setup assistant and add the scanner.
 
-PixelScan 1.3.0
+PixelScan 1.3.1
 
 1. Ziehen Sie PixelScan auf den Ordner Programme.
 2. Öffnen Sie PixelScan aus dem Programme-Ordner.
@@ -39,4 +39,4 @@ hdiutil create \
 shasum -a 256 "$DMG" > "$DMG.sha256"
 echo "$DMG"
 cat "$DMG.sha256"
-echo "Diese Datei ist nicht notarisiert und ersetzt dist/PixelScan-1.3.0.dmg nicht."
+echo "Diese Datei ist nicht notarisiert und ersetzt weder dist/PixelScan-1.3.0.dmg noch dist/PixelScan-1.3.1.dmg."

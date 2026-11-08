@@ -1,6 +1,21 @@
-# Entwicklungsstand 1.3.1
+# Release 1.3.1
 
-PixelScan 1.3.1 Build 5 ist nicht veröffentlicht. Es gibt keine neue DMG, keinen neuen Tag und kein Release. Der Rollback-Tag `rollback/v1.3.0-build4` bleibt auf dem veröffentlichten Stand 1.3.0 Build 4.
+PixelScan 1.3.1 Build 5 ist das notarisierte Release mit der PixelProject-Wortmarke. Das veröffentlichte Image `dist/PixelScan-1.3.0.dmg` bleibt unverändert. Der Tag `v1.3.0` und der Rollback-Tag `rollback/v1.3.0-build4` bleiben auf `db091f1e0e09a24706955e9cff05495455397fff`.
+
+## Artefakt
+
+- Datei: `dist/PixelScan-1.3.1.dmg`
+- SHA-256: `39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`
+- Die veröffentlichte Prüfsummendatei nennt den Dateinamen `PixelScan-1.3.1.dmg`, ohne Ordner `dist/`
+- Inhalt: `PixelScan.app`, Verknüpfung auf den Programme-Ordner und `Installation.txt`
+- Version 1.3.1, Build 5
+- Universal Binary `arm64` und `x86_64`
+- Einreichung `e1556839-4b33-4b5f-a09e-10ce2503145b`, Status `Accepted`
+- `xcrun stapler validate` hat das Ticket bestätigt
+- `hdiutil verify` hat die DMG als gültig gemeldet
+- `spctl --assess --type install` hat die DMG mit `source=Notarized Developer ID` akzeptiert
+
+Geprüft am 8. November 2026. Ein neuer Hardwaretest wurde nicht ausgeführt. Die App aus diesem Image wurde nicht nach `/Applications` kopiert.
 
 # Release 1.3.0
 
