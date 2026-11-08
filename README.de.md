@@ -81,7 +81,7 @@ Der Flachbetttest des SL-C2670FW war am 6. November 2026 ein Ausschnitt von 40 m
 
 ## Installation
 
-1. Öffnen Sie `PixelScan-1.3.1.dmg`.
+1. Öffnen Sie `PixelScan-1.3.2.dmg`.
 2. Ziehen Sie **PixelScan** in den Ordner Programme.
 3. Öffnen Sie PixelScan aus dem Programme-Ordner. Beim ersten Start kann macOS nach der Erlaubnis fragen, Geräte im lokalen Netzwerk zu finden. Erlauben Sie das.
 4. Wenn macOS fragt, ob ein Programm eines identifizierten Entwicklers geöffnet werden soll: Das veröffentlichte Image ist mit einer Developer ID signiert und notarisiert. Vergleichen Sie die veröffentlichte SHA-256-Prüfsumme mit genau dieser Datei, bevor Sie eine Kopie aus einer anderen Quelle öffnen.
@@ -175,24 +175,24 @@ Weitere Fälle stehen in [docs/TROUBLESHOOTING.de.md](docs/TROUBLESHOOTING.de.md
 
 ## Downloads und Releases
 
-PixelScan 1.3.1 steht im GitHub-Release. Das Release enthält das notarisierte Disk-Image, die Prüfsumme und das PixelProject-Logo.
+PixelScan 1.3.2 steht im GitHub-Release. Das Release enthält das notarisierte Disk-Image, die Prüfsumme und das PixelProject-Logo.
 
-- [Release-Seite](https://github.com/pixel-project-dev/PixelScan/releases/tag/v1.3.1)
+- [Release-Seite](https://github.com/pixel-project-dev/PixelScan/releases/tag/v1.3.2)
 - [Aktuelles Release](https://github.com/pixel-project-dev/PixelScan/releases/latest)
-- [PixelScan-1.3.1.dmg](https://github.com/pixel-project-dev/PixelScan/releases/download/v1.3.1/PixelScan-1.3.1.dmg)
+- [PixelScan-1.3.2.dmg](https://github.com/pixel-project-dev/PixelScan/releases/download/v1.3.2/PixelScan-1.3.2.dmg)
 
 SHA-256 des notarisierten Images:
 
-`39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`
+`81ba933d7b8c1351563b31eb0ab24658d4686709069574142bf499af6cdc6e20`
 
-Das vorherige notarisierte Image bleibt `PixelScan-1.3.0.dmg`, SHA-256 `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`.
+Die vorherigen notarisierten Images bleiben verfügbar. `PixelScan-1.3.1.dmg` hat die SHA-256 `39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`. `PixelScan-1.3.0.dmg` hat die SHA-256 `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`.
 
 Das Release enthält das Disk-Image, die Prüfsumme, das PixelProject-Logo und diese Hinweise. Der Quellcode der Anwendung ist proprietär und gehört nicht in das öffentliche Repository.
 
 Prüfen Sie nach dem Download die veröffentlichte SHA-256-Summe:
 
 ```sh
-shasum -a 256 -c PixelScan-1.3.1.dmg.sha256
+shasum -a 256 -c PixelScan-1.3.2.dmg.sha256
 ```
 
 ## Häufig gestellte Fragen

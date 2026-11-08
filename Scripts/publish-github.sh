@@ -26,9 +26,9 @@ cp docs/FAQ.md docs/FAQ.de.md "$DEST/docs/"
 cp docs/PRIVACY.md docs/PRIVACY.de.md "$DEST/docs/"
 cp docs/TROUBLESHOOTING.md docs/TROUBLESHOOTING.de.md "$DEST/docs/"
 cp THIRD_PARTY_NOTICES.md "$DEST/THIRD_PARTY_NOTICES.md"
-if [[ "${PIXELSCAN_PUBLIC_DMG:-}" == "1" && -f dist/PixelScan-1.3.1.dmg && -f dist/PixelScan-1.3.1.dmg.sha256 ]]; then
+if [[ "${PIXELSCAN_PUBLIC_DMG:-}" == "1" && -f dist/PixelScan-1.3.2.dmg && -f dist/PixelScan-1.3.2.dmg.sha256 ]]; then
   mkdir -p "$DEST/releases"
-  cp dist/PixelScan-1.3.1.dmg dist/PixelScan-1.3.1.dmg.sha256 "$DEST/releases/"
+  cp dist/PixelScan-1.3.2.dmg dist/PixelScan-1.3.2.dmg.sha256 "$DEST/releases/"
   cp branding/pixelproject-logo-light.svg branding/pixelproject-logo-dark.svg "$DEST/releases/"
 else
   echo "Die DMG wird nicht kopiert."

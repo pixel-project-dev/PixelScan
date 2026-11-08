@@ -81,7 +81,7 @@ The flatbed test of the SL-C2670FW was a 40 mm × 40 mm scan at 75 dpi on 6 Nove
 
 ## Installation
 
-1. Open `PixelScan-1.3.1.dmg`.
+1. Open `PixelScan-1.3.2.dmg`.
 2. Drag **PixelScan** to the Applications folder.
 3. Open PixelScan from the Applications folder. The first launch can ask for permission to find devices on the local network. Allow it.
 4. If macOS asks whether to open an app from an identified developer, the published image is signed with a Developer ID and notarized. Confirm the SHA-256 published with that exact file before you open a copy from anywhere else.
@@ -175,24 +175,24 @@ More cases are in [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
 ## Downloads and releases
 
-Download PixelScan 1.3.1 from the GitHub release. The release includes the notarized disk image, its checksum and the PixelProject logo.
+Download PixelScan 1.3.2 from the GitHub release. The release includes the notarized disk image, its checksum and the PixelProject logo.
 
-- [Release page](https://github.com/pixel-project-dev/PixelScan/releases/tag/v1.3.1)
+- [Release page](https://github.com/pixel-project-dev/PixelScan/releases/tag/v1.3.2)
 - [Latest release](https://github.com/pixel-project-dev/PixelScan/releases/latest)
-- [PixelScan-1.3.1.dmg](https://github.com/pixel-project-dev/PixelScan/releases/download/v1.3.1/PixelScan-1.3.1.dmg)
+- [PixelScan-1.3.2.dmg](https://github.com/pixel-project-dev/PixelScan/releases/download/v1.3.2/PixelScan-1.3.2.dmg)
 
 SHA-256 of the notarized image:
 
-`39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`
+`81ba933d7b8c1351563b31eb0ab24658d4686709069574142bf499af6cdc6e20`
 
-The previous notarized image remains `PixelScan-1.3.0.dmg`, SHA-256 `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`.
+The previous notarized images remain available. `PixelScan-1.3.1.dmg` has SHA-256 `39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`. `PixelScan-1.3.0.dmg` has SHA-256 `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`.
 
 The release contains the disk image, the checksum, the PixelProject logo and these notes. The application source is proprietary and is not part of the public repository.
 
 Check the published SHA-256 after download:
 
 ```sh
-shasum -a 256 -c PixelScan-1.3.1.dmg.sha256
+shasum -a 256 -c PixelScan-1.3.2.dmg.sha256
 ```
 
 ## Frequently asked questions

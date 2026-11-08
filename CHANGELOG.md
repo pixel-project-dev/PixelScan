@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2
+
+Build 6. Die Oberfläche gibt es auf Deutsch, Englisch, Französisch, Spanisch und Italienisch. Ein Symbol in der Symbolleiste schaltet zwischen hellem und dunklem Erscheinungsbild. Die Texterkennung bleibt auf Deutsch und Englisch. Das notarisierte Image ist `PixelScan-1.3.2.dmg`. Die Dateien `PixelScan-1.3.1.dmg` und `PixelScan-1.3.0.dmg` bleiben unverändert.
+
 ## 1.3.1
 
 Build 5. Die PixelProject-Wortmarke ist als SVG hinterlegt und im Hauptfenster, in Über PixelScan, in den Einstellungen und auf der Willkommensseite sichtbar. Ein Klick öffnet `https://pixel-project.de` im Standardbrowser. Das notarisierte Image ist `PixelScan-1.3.1.dmg`. Die Datei `PixelScan-1.3.0.dmg` bleibt unverändert.

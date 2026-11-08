@@ -12,7 +12,9 @@ Das ist der vollständige Weg.
 - DMG mit Programm und Verknüpfung zum Programme-Ordner
 - Prüfsumme SHA-256 neben der DMG
 
-Veröffentlicht ist **PixelScan 1.3.1 Build 5**. Die Download-Datei ist `dist/PixelScan-1.3.1.dmg`. Die Dateien `dist/PixelScan-1.3.0.dmg` und `dist/SamsungScan-1.2.0.dmg` bleiben die früheren Stände.
+Veröffentlicht ist **PixelScan 1.3.2 Build 6**. Die Download-Datei ist `dist/PixelScan-1.3.2.dmg`. Die Dateien `dist/PixelScan-1.3.1.dmg`, `dist/PixelScan-1.3.0.dmg` und `dist/SamsungScan-1.2.0.dmg` bleiben die früheren Stände.
+
+SHA-256 von `PixelScan-1.3.2.dmg`: `81ba933d7b8c1351563b31eb0ab24658d4686709069574142bf499af6cdc6e20`
 
 SHA-256 von `PixelScan-1.3.1.dmg`: `39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`
 
