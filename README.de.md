@@ -19,9 +19,15 @@ PixelScan ist für Personen, die auf einem Mac Dokumente scannen möchten, ohne 
 
 ## Screenshots
 
-Das Bild oben ist das Programmsymbol, das mit PixelScan ausgeliefert wird.
+Das Hauptfenster in der hellen Darstellung und im Dunkelmodus. Die Scanneradresse in diesen Bildern ist ein Platzhalter.
 
-Ein Fensterscreenshot ist nicht enthalten. Auf dem Entwicklungsmac ist bereits ein Scanner gespeichert, und eine Aufnahme dieses Fensters würde eine private Netzwerkadresse zeigen. Es wurde kein Ersatzbild für die echte Oberfläche angefertigt.
+**Helle Darstellung**
+
+![PixelScan-Hauptfenster in heller Darstellung](docs/pixelscan-window-light.png)
+
+**Dunkle Darstellung**
+
+![PixelScan-Hauptfenster in dunkler Darstellung](docs/pixelscan-window-dark.png)
 
 ## Hauptfunktionen
 

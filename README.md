@@ -19,9 +19,15 @@ PixelScan is for people who want to scan documents on a Mac without an account o
 
 ## Screenshots
 
-The image above is the application icon shipped with PixelScan.
+The main window in the light appearance and in dark mode. The scanner address in these pictures is a placeholder.
 
-A window screenshot is not included. The development Mac already has a saved scanner, and a capture of that window would show a private network address. No picture has been created to stand in for the real interface.
+**Light appearance**
+
+![PixelScan main window in light appearance](docs/pixelscan-window-light.png)
+
+**Dark appearance**
+
+![PixelScan main window in dark appearance](docs/pixelscan-window-dark.png)
 
 ## Main features
 

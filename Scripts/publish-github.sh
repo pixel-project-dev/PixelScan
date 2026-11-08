@@ -18,7 +18,7 @@ fi
 
 mkdir -p "$DEST/docs"
 cp README.md README.de.md "$DEST/"
-cp docs/pixelscan-icon.png "$DEST/docs/"
+cp docs/pixelscan-icon.png docs/pixelscan-window-light.png docs/pixelscan-window-dark.png "$DEST/docs/"
 cp branding/pixelproject-logo-light.svg branding/pixelproject-logo-dark.svg "$DEST/docs/"
 cp docs/INSTALLATION.md docs/INSTALLATION.de.md "$DEST/docs/"
 cp docs/COMPATIBILITY.md docs/COMPATIBILITY.de.md "$DEST/docs/"
