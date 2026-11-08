@@ -3,6 +3,8 @@ import SwiftUI
 
 struct MainView: View {
     @Bindable var model: AppModel
+    @AppStorage(AppearancePreference.storageKey) private var appearanceRaw = ""
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         HSplitView {
@@ -68,6 +70,7 @@ struct MainView: View {
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in
             model.shutdown()
         }
+        .pixelScanAppearance()
     }
 
     private var backendBanner: some View {
@@ -115,6 +118,16 @@ struct MainView: View {
                 Label("Open in Preview", systemImage: "doc.richtext")
             }
             .disabled(model.document.pages.isEmpty || model.isScanning)
+            Button {
+                appearanceRaw = AppearancePreference.toggled(from: appearanceRaw, current: colorScheme)
+            } label: {
+                Label(appearanceIsDark ? "Switch to Light Mode" : "Switch to Dark Mode", systemImage: appearanceIsDark ? "sun.max" : "moon")
+            }
+            .help(appearanceIsDark ? "Switch to Light Mode" : "Switch to Dark Mode")
         }
+    }
+
+    private var appearanceIsDark: Bool {
+        appearanceRaw == "dark" || (appearanceRaw != "light" && colorScheme == .dark)
     }
 }

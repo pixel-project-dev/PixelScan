@@ -16,12 +16,13 @@ struct SettingsView: View {
         }
         .frame(width: 560, height: 520)
         .padding(12)
+        .pixelScanAppearance()
     }
 
     private var general: some View {
         Form {
             Section("General") {
-                Text("Language and appearance follow the system setting.")
+                Text("Language follows the system setting.")
                 LabeledContent("Version") {
                     Text(versionText)
                 }

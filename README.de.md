@@ -39,7 +39,7 @@ Das Hauptfenster in der hellen Darstellung und im Dunkelmodus. Die Scanneradress
 - Mehrseitiges PDF, PNG, JPEG und TIFF
 - Lokale Texterkennung, die ein durchsuchbares PDF erzeugen kann
 - Scanprofile für wiederkehrende Aufträge
-- Oberfläche auf Deutsch und Englisch, helles und dunkles Erscheinungsbild
+- Oberfläche auf Deutsch, Englisch, Französisch, Spanisch und Italienisch, mit Umschalter zwischen hellem und dunklem Erscheinungsbild
 
 Eine Funktion erscheint nur, wenn der verbundene Scanner sie meldet. Duplex erscheint zum Beispiel nur, wenn das Backend Duplex meldet.
 

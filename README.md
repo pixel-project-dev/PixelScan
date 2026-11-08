@@ -39,7 +39,7 @@ The main window in the light appearance and in dark mode. The scanner address in
 - Multipage PDF, PNG, JPEG and TIFF
 - Local OCR that can produce a searchable PDF
 - Scan profiles for repeated jobs
-- German and English interface, light and dark appearance
+- English, German, French, Spanish, and Italian interface, with a switch between light and dark appearance
 
 A function is shown only when the connected scanner reports it. Duplex, for example, appears only if the backend reports duplex.
 

@@ -4,7 +4,7 @@
 
 PixelScan 1.3.1 Build 5 ist die veröffentlichte Fassung einer eigenständigen, kostenlosen macOS-Anwendung für kompatible Netzwerkscanner. Das vorherige Release 1.3.0 Build 4 bleibt als Datei erhalten. Der frühere Name ist Samsung Scan. Der eigene Quellcode bleibt proprietär, das private Repository bleibt privat. Die Bundle-ID ist `email.hennige.pixelscan`. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan aus dem Fenster mit Papier stehen noch aus. Die Wortmarke und ihre Verwendung stehen in `branding/README.md`.
 
-Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus und die Sprachen Deutsch und Englisch.
+Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus mit einem Umschalter in der Symbolleiste und die Sprachen Deutsch, Englisch, Französisch, Spanisch und Italienisch. Die Texterkennung bleibt auf Deutsch und Englisch.
 
 PixelScan ist kein Produkt von Samsung Electronics. Samsung ist eine Marke des jeweiligen Inhabers.
 

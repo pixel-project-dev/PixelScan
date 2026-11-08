@@ -69,7 +69,9 @@
 "Installing sane-backends…" = "sane-backends wird installiert…";
 "JPEG quality" = "JPEG-Qualität";
 "Keep" = "Behalten";
-"Language and appearance follow the system setting." = "Sprache und Erscheinungsbild folgen der Systemeinstellung.";
+"Language follows the system setting." = "Die Sprache folgt der Systemeinstellung.";
+"Switch to Dark Mode" = "Zum Dunkelmodus wechseln";
+"Switch to Light Mode" = "Zum Hellmodus wechseln";
 "Legal" = "Legal";
 "Letter" = "Letter";
 "Load the feeder. Pages already scanned are kept if it stops." = "Legen Sie die Seiten in den Einzug. Bereits gescannte Seiten bleiben erhalten, wenn der Einzug stoppt.";
