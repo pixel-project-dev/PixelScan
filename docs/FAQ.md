@@ -40,4 +40,4 @@ Not in this release. The scanner program lives outside the app. A sandboxed App 
 
 ## Where is the source code?
 
-The source is proprietary and is not published in the public GitHub repository. The public repository is limited to documentation, release notes, checksums and, after approval, the disk image.
+PixelScan is open source under the MIT License. The source is in this repository: https://github.com/pixel-project-dev/PixelScan

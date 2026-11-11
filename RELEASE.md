@@ -87,4 +87,4 @@ Die Bibliothek unter `~/Library/Application Support/Samsung Scan/` blieb unverä
 
 ## Veröffentlichung
 
-Kein Upload auf eine Website, kein öffentliches Gitea-Release, kein GitHub-Release und keine Änderung der Repository-Sichtbarkeit. Die Anwendung bleibt kostenlos und proprietär.
+Ältere Notiz vor der Open-Source-Freigabe: Die Anwendung war kostenlos und proprietär. Der Quellcode steht inzwischen unter der MIT-Lizenz und liegt auf GitHub.

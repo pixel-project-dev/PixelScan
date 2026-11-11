@@ -2,9 +2,11 @@
 
 ## Eigener Code
 
-Der Quellcode von PixelScan ist proprietär. Die Anwendung ist dauerhaft kostenlos, ohne Werbung, Konto, Abo, In-App-Kauf, Telemetrie oder Cloud-Pflicht. Das Repository bleibt privat. Diese Datei ist keine Erlaubnis, den Quellcode zu veröffentlichen.
+Der Quellcode von PixelScan steht unter der MIT-Lizenz. Die Datei `LICENSE` ist maßgeblich. Die Anwendung bleibt dauerhaft kostenlos, ohne Werbung, Konto, Abo, In-App-Kauf, Telemetrie oder Cloud-Pflicht.
 
-Ein fertiges Binärpaket darf weitergegeben werden, solange die Pflichten der mitgelieferten und der getrennt genutzten Komponenten eingehalten werden. Die App selbst enthält kein SANE-Programm.
+Der Quellcode liegt im öffentlichen Repository [github.com/pixel-project-dev/PixelScan](https://github.com/pixel-project-dev/PixelScan). Ein privater Entwicklungsstand kann parallel bestehen; veröffentlicht wird der Stand, der nach GitHub geschoben wird.
+
+Ein fertiges Binärpaket darf weitergegeben werden, solange die Pflichten der MIT-Lizenz und der getrennt genutzten Komponenten eingehalten werden. Die App selbst enthält kein SANE-Programm.
 
 ## SANE
 
@@ -14,7 +16,7 @@ Geprüft an `/opt/homebrew/Cellar/sane-backends/1.4.0_2/LICENSE` und `COPYING`.
 - Die meisten Backend-Bibliotheken stehen unter der GPL-2.0 mit der SANE-Linking-Exception. Nicht jedes Backend übernimmt die Exception.
 - Die SANE-API und das Netzwerkprotokoll sind Public Domain.
 
-PixelScan verlinkt `libsane` nicht und startet `scanimage` als eigenes Programm. Die App kopiert `scanimage` nicht in das Bundle.
+PixelScan verlinkt `libsane` nicht und startet `scanimage` als eigenes Programm. Die App kopiert `scanimage` nicht in das Bundle. Dadurch wird der Swift-Quelltext nicht durch die GPL von SANE gebunden.
 
 ### Warum keine mitgelieferte Laufzeit
 

@@ -187,7 +187,7 @@ SHA-256 des notarisierten Images:
 
 Die vorherigen notarisierten Images bleiben verfügbar. `PixelScan-1.3.1.dmg` hat die SHA-256 `39a852e6054d42299ac195a0571121d219e9f14cf4cbd7dcfcec78b2e33d56e7`. `PixelScan-1.3.0.dmg` hat die SHA-256 `2addce0acdbebe3083684cd9009d1787e1adb37460b62c6829ef4b62afbab001`.
 
-Das Release enthält das Disk-Image, die Prüfsumme, das PixelProject-Logo und diese Hinweise. Der Quellcode der Anwendung ist proprietär und gehört nicht in das öffentliche Repository.
+Das Release enthält das Disk-Image, die Prüfsumme, das PixelProject-Logo und diese Hinweise. Der Quellcode der Anwendung ist Open Source unter der MIT-Lizenz und liegt in diesem Repository.
 
 Prüfen Sie nach dem Download die veröffentlichte SHA-256-Summe:
 
@@ -201,6 +201,6 @@ Die kurzen Antworten stehen in [docs/FAQ.de.md](docs/FAQ.de.md). Insbesondere: P
 
 ## Lizenz und Drittanbieterkomponenten
 
-Der Quellcode von PixelScan ist proprietär. Die signierte Anwendung darf unentgeltlich verwendet werden. Diese Erlaubnis ist keine Lizenz, den Quellcode weiterzuveröffentlichen.
+PixelScan ist kostenlos und Open Source unter der MIT-Lizenz. Siehe [LICENSE](LICENSE) und [LICENSES.md](LICENSES.md).
 
 `scanimage` und sane-backends sind Drittanbietersoftware unter der GPL und werden getrennt installiert. Apples System-Frameworks gehören zu macOS. Die Hinweise stehen in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

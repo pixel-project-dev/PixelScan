@@ -28,7 +28,7 @@ struct AboutPixelScanView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-            Text("PixelScan is free and proprietary. Scanning stays on this Mac.")
+            Text("PixelScan is free and open source. Scanning stays on this Mac.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

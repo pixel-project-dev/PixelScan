@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+Der Quellcode steht unter der MIT-Lizenz und ist auf GitHub veröffentlicht.
+
 ## 1.3.2
 
 Build 6. Die Oberfläche gibt es auf Deutsch, Englisch, Französisch, Spanisch und Italienisch. Ein Symbol in der Symbolleiste schaltet zwischen hellem und dunklem Erscheinungsbild. Die Texterkennung bleibt auf Deutsch und Englisch. Das notarisierte Image ist `PixelScan-1.3.2.dmg`. Die Dateien `PixelScan-1.3.1.dmg` und `PixelScan-1.3.0.dmg` bleiben unverändert.

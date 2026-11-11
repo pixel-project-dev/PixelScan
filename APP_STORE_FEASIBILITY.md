@@ -33,7 +33,7 @@ Ein erfolgreicher Start der sandkastenisierten App ist kein Nachweis für eine A
 
 Apple erlaubt in der Sandbox keinen freien Start fremder Programme und keinen freien Lesezugriff auf Homebrew. Eine temporäre Ausnahme für `/opt/homebrew` wäre ein Sonderrecht und ist für den App Store nicht als zulässig nachgewiesen.
 
-`scanimage` ist ein GPL-2.0-Frontend. Es ins App-Bundle zu kopieren, würde die proprietäre App mit Weitergabepflichten belasten, die nicht geklärt sind. Die App verlinkt `libsane` nicht.
+`scanimage` ist ein GPL-2.0-Frontend. Es ins App-Bundle zu kopieren, würde die MIT-lizenzierte App mit Weitergabepflichten der GPL belasten, die hier nicht gewollt sind. Die App verlinkt `libsane` nicht.
 
 Öffentliche Scanner-APIs von ImageCaptureCore nehmen Geräte entgegen. Sie bieten keine Schnittstelle, um diesen SANE-Scanner für die Vorschau anzumelden.
 

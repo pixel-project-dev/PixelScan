@@ -2,13 +2,13 @@
 
 ## Ziel
 
-PixelScan 1.3.2 Build 6 ist die veröffentlichte Fassung einer eigenständigen, kostenlosen macOS-Anwendung für kompatible Netzwerkscanner. Die vorherigen Releases 1.3.1 Build 5 und 1.3.0 Build 4 bleiben als Dateien erhalten. Der frühere Name ist Samsung Scan. Der eigene Quellcode bleibt proprietär, das private Repository bleibt privat. Die Bundle-ID ist `email.hennige.pixelscan`. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan aus dem Fenster mit Papier stehen noch aus. Die Wortmarke und ihre Verwendung stehen in `branding/README.md`.
+PixelScan 1.3.2 Build 6 ist die veröffentlichte Fassung einer eigenständigen, kostenlosen macOS-Anwendung für kompatible Netzwerkscanner. Die vorherigen Releases 1.3.1 Build 5 und 1.3.0 Build 4 bleiben als Dateien erhalten. Der frühere Name ist Samsung Scan. Der Quellcode steht unter der MIT-Lizenz und liegt öffentlich auf GitHub. Die Bundle-ID ist `email.hennige.pixelscan`. Das Referenzgerät ist der Samsung ProXpress SL-C2670FW über `xerox_mfp` und TCP 9400. Ein Intel-Hardwaretest und ein ADF-Scan aus dem Fenster mit Papier stehen noch aus. Die Wortmarke und ihre Verwendung stehen in `branding/README.md`.
 
 Die App richtet sich an Personen ohne Terminalkenntnisse. Sie unterstützt Hell- und Dunkelmodus mit einem Umschalter in der Symbolleiste und die Sprachen Deutsch, Englisch, Französisch, Spanisch und Italienisch. Die Texterkennung bleibt auf Deutsch und Englisch.
 
 PixelScan ist kein Produkt von Samsung Electronics. Samsung ist eine Marke des jeweiligen Inhabers.
 
-Öffentliche Texte stehen in `README.md`, `README.de.md` und `docs/`. Interne Release-Schritte stehen in `RELEASE.md`. `Scripts/publish-github.sh` überträgt nichts, solange keine ausdrückliche Freigabe gesetzt ist, und fügt GitHub nicht als Remote dieses Repositorys hinzu.
+Öffentliche Texte stehen in `README.md`, `README.de.md` und `docs/`. Interne Release-Schritte stehen in `RELEASE.md`. Der Quellcode wird mit `git push github main` veröffentlicht. `Scripts/publish-github.sh` kopiert nur freigegebene Release-Dateien.
 
 Entwicklung:
 

@@ -1,12 +1,13 @@
 #!/bin/bash
-# Refuses to publish unless a person explicitly sets PIXELSCAN_PUBLIC_RELEASE=1.
-# Even then it copies only an allowlist into a separate directory. It does not
-# add GitHub as a remote of this private repository and it does not push source.
+# The application source is published with git to the github remote.
+# This script only copies release assets into a separate directory when asked.
+# It does not rewrite git history and it does not push.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 if [[ "${PIXELSCAN_PUBLIC_RELEASE:-}" != "1" ]]; then
   echo "Öffentliche Veröffentlichung ist nicht freigegeben. Es wird nichts übertragen." >&2
+  echo "Quellcode: git push github main" >&2
   exit 1
 fi
 
@@ -16,21 +17,11 @@ if [[ -z "$DEST" || "$DEST" == *samsung_scan* ]]; then
   exit 1
 fi
 
-mkdir -p "$DEST/docs"
-cp README.md README.de.md "$DEST/"
-cp docs/pixelscan-icon.png docs/pixelscan-window-light.png docs/pixelscan-window-dark.png "$DEST/docs/"
-cp branding/pixelproject-logo-light.svg branding/pixelproject-logo-dark.svg "$DEST/docs/"
-cp docs/INSTALLATION.md docs/INSTALLATION.de.md "$DEST/docs/"
-cp docs/COMPATIBILITY.md docs/COMPATIBILITY.de.md "$DEST/docs/"
-cp docs/FAQ.md docs/FAQ.de.md "$DEST/docs/"
-cp docs/PRIVACY.md docs/PRIVACY.de.md "$DEST/docs/"
-cp docs/TROUBLESHOOTING.md docs/TROUBLESHOOTING.de.md "$DEST/docs/"
-cp THIRD_PARTY_NOTICES.md "$DEST/THIRD_PARTY_NOTICES.md"
+mkdir -p "$DEST/releases"
 if [[ "${PIXELSCAN_PUBLIC_DMG:-}" == "1" && -f dist/PixelScan-1.3.2.dmg && -f dist/PixelScan-1.3.2.dmg.sha256 ]]; then
-  mkdir -p "$DEST/releases"
   cp dist/PixelScan-1.3.2.dmg dist/PixelScan-1.3.2.dmg.sha256 "$DEST/releases/"
   cp branding/pixelproject-logo-light.svg branding/pixelproject-logo-dark.svg "$DEST/releases/"
+  echo "Release-Dateien nach $DEST/releases kopiert. Es wurde nichts gepusht."
 else
-  echo "Die DMG wird nicht kopiert."
+  echo "Die DMG wird nicht kopiert. Quellcode gehört in den git-Push nach GitHub."
 fi
-echo "Nur freigegebene Dateien nach $DEST kopiert. Es wurde nichts gepusht."

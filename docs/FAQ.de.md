@@ -40,4 +40,4 @@ In diesem Release nicht. Das Scannerprogramm liegt außerhalb der App. Eine sand
 
 ## Wo ist der Quellcode?
 
-Der Quellcode ist proprietär und wird im öffentlichen GitHub-Repository nicht veröffentlicht. Das öffentliche Repository beschränkt sich auf Dokumentation, Versionshinweise, Prüfsummen und, nach Freigabe, das Disk-Image.
+PixelScan ist Open Source unter der MIT-Lizenz. Der Quellcode liegt in diesem Repository: https://github.com/pixel-project-dev/PixelScan

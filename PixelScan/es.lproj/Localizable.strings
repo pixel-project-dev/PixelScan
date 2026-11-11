@@ -230,6 +230,6 @@
 "Opens pixel-project.de in the default browser" = "Abre pixel-project.de en el navegador predeterminado";
 "Version %@ (Build %@)" = "Versión %@ (compilación %@)";
 "PixelScan scans documents on this Mac and keeps the pages local." = "PixelScan escanea documentos en este Mac y conserva las páginas en local.";
-"PixelScan is free and proprietary. Scanning stays on this Mac." = "PixelScan es gratuito y propietario. El escaneo permanece en este Mac.";
+"PixelScan is free and open source. Scanning stays on this Mac." = "PixelScan es gratuito y de código abierto. El escaneo permanece en este Mac.";
 "Switch to Dark Mode" = "Cambiar al modo oscuro";
 "Switch to Light Mode" = "Cambiar al modo claro";

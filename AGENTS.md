@@ -37,12 +37,14 @@ Diese Regeln gelten für alle weiteren Änderungen an PixelScan. Der frühere Pr
 
 ## Git
 
-- Branch ist `main`. Keine Force-Pushes und keine destruktiven Git-Befehle.
+- Branch ist `main`. Keine Force-Pushes und keine destruktiven Git-Befehle, außer einer ausdrücklich freigegebenen einmaligen Migration.
+- Das öffentliche GitHub-Repository `pixel-project-dev/PixelScan` enthält den Quellcode. Ein privates Gitea-Remote kann parallel bleiben.
 - Keine Build-Artefakte, DMGs oder Ableitungsdaten ins Repository legen.
 - Wenn die Build-Nummer steigt, wird vorher ein Rollback-Tag `rollback/v<version>-build<n>` auf den letzten bekannten Stand gesetzt.
 - Commits beschreiben den Zweck der Änderung.
 
 ## Lizenzen
 
+- Der eigene Quellcode steht unter der MIT-Lizenz (`LICENSE`).
 - sane-backends steht unter der GPL. Frontends sind GPL, die meisten Backends haben eine Verknüpfungsausnahme. PixelScan bündelt diese Programme nicht und startet `scanimage` als eigenes Programm.
-- Die genauen Hinweise stehen in `THIRD_PARTY_NOTICES.md`.
+- Die genauen Hinweise stehen in `LICENSES.md` und `THIRD_PARTY_NOTICES.md`.
